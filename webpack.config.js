@@ -5,7 +5,8 @@ module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    publicPath: ''
   },
   module: {
     rules: [
@@ -14,6 +15,14 @@ module.exports = {
         loader: 'html-loader',
         options: {
           minimize: true
+        }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images'
         }
       },
     ],
