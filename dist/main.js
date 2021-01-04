@@ -1,1 +1,1 @@
-(()=>{"use strict";var o=function(){return console.log("Hello")};o(),o(),console.log("Hello Webpack!")})();
+(()=>{"use strict";console.log("test OK")})();

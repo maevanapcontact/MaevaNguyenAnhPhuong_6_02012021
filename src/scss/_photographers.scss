@@ -1,0 +1,36 @@
+.photographers {
+  &-elt {
+    text-align: center;
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    h2 {
+      color: $secondary-color;
+      font-weight: 400;
+      font-size: 1.6em;
+      margin-top: 10px;
+    }
+
+    .infos {
+      span {
+        display: block;
+        font-size: 0.7em;
+      }
+
+      &-city {
+        color: $primary-color;
+        font-size: 0.8em;
+      }
+
+      &-price {
+        color: $price-color;
+        font-style: italic;
+      }
+    }
+  }
+}

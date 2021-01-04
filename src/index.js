@@ -1,7 +1,3 @@
-import { hello } from './hello';
-import './styles/style.scss';
+import './scss/main.scss';
 
-hello();
-hello();
-
-console.log('Hello Webpack!');
+console.log('test OK');

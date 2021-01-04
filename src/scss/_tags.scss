@@ -1,0 +1,19 @@
+.tags {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+
+  li {
+    display: flex;
+    border: 0.5px solid $border-color;
+    border-radius: 30px;
+    margin: 3px;
+  }
+
+  a {
+    color: $primary-color;
+    padding: 2px 7px;
+    font-weight: 500;
+    font-size: 0.7em;
+  }
+}
