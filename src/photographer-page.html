@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <title>FishEye - photographer</title>
+</head>
+<body>
+  <!-- BANNER -->
+  <header class="banner">
+    <a href="index.html">
+      <img src="medias/logo.png" alt="Logo FishEye" width="512" height="128">
+    </a>
+  </header>
+
+  <!-- MAIN PHOTOGRAPHER PAGE-->
+  <main class="photographer-page">
+    <header class="ph-header">
+      <div class="ph-infos">
+        <h1 class="ph-name">Mimi Keel</h1>
+        <span class="ph-city">London, UK</span>
+        <span class="ph-tagline">Voir le beau dans le quotidien</span>
+        <ul class="tags">
+          <li><a href="#">#portrait</a></li>
+          <li><a href="#">#events</a></li>
+          <li><a href="#">#travel</a></li>
+          <li><a href="#">#animals</a></li>
+        </ul>
+      </div>
+      <button class="ph-contact">Contactez-moi</button>
+      <img src="medias/MimiKeel.jpg" alt="">
+    </header>
+
+    <section class="ph-works">
+      <div class="works-sort">
+        <label for="sort-work">Trier par</label>
+        <select name="sort" id="sort-work">
+          <option value="popularite">Popularité</option>
+          <option value="date">Date</option>
+          <option value="titre">Titre</option>
+        </select>
+      </div>
+      <div class="works-elts">
+        <div class="work-elt">
+          <img src="medias/MarcelNikolic.jpg" alt="">
+          <div class="work-elt-infos">
+            <span class="work-title">Arc-en-cie</span>
+            <span class="work-price">70€</span>
+            <span class="work-like">
+              12
+              <i class="fas fa-heart"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

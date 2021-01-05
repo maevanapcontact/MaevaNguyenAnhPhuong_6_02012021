@@ -1,0 +1,36 @@
+.works-sort {
+  label {
+    font-weight: 700;
+  }
+
+  select {
+    background: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+  }
+}
+
+.work-elt {
+  color: $primary-color;
+  font-size: 1.2em;
+  font-weight: 500;
+  width: 350px;
+
+  img {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &-infos {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .work-title {
+    width: 225px;
+  }
+}

@@ -1,0 +1,44 @@
+.ph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  background: $header-color;
+  padding: 63px 35px 48px 65px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.ph-infos {
+  .ph-name {
+    color: $secondary-color;
+    font-size: 2.4em;
+    font-weight: 400;
+  }
+
+  .ph-city {
+    color: $primary-color;
+    display: block;
+    font-size: 1.2em;
+  }
+
+  .ph-tagline {
+    color: $tertiary-color;
+    font-size: 0.9em;
+  }
+}
+
+.ph-contact {
+  background: $primary-color;
+  color: #fff;
+  padding: 18px 11px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+}
