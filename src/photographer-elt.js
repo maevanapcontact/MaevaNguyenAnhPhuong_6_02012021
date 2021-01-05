@@ -9,7 +9,7 @@ import {
 /** Creates the photographer element */
 const createPhotographerElt = data => {
   let articleElt = createEltWithClassName('article', 'photographers-elt');
-  let aElt = createLinkElt(`${data.id}.html`, data.name);
+  let aElt = createLinkElt(`photographer-page.html?id=${data.id}`, data.name);
   let pElt = createEltWithClassName('p', 'infos');
   let ulElt = createEltWithClassName('ul', 'tags');
   articleElt.appendChild(aElt);
