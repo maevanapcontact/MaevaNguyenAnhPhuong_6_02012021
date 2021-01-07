@@ -1,6 +1,7 @@
 .tags {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 5px 0;
 
   li {
@@ -14,6 +15,6 @@
     color: $primary-color;
     padding: 2px 7px;
     font-weight: 500;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 }

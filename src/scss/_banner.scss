@@ -1,6 +1,23 @@
 .banner {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1080px) {
+      flex-direction: row;
+      align-items: center;
+  }
+
+  @media (min-width: 1440px) {
+    padding: 40px 100px;
+  }
+
   img {
-    width: 200px;
+    width: 150px;
     height: auto;
+
+    @media (min-width: 1200px) {
+      width: 200px;
+    }
   }
 }
