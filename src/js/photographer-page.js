@@ -16,6 +16,7 @@ const createPhotographerPage = () => {
 
   fillPhotographerData(photographerData);
   createPhotographerWorksSection(photographerWorks);
+  createPhotographerData(photographerData, photographerWorks);
 }
 
 /** Fill existing HTML content with photographer data */
@@ -49,7 +50,7 @@ const createWorkElt = workData => {
   let elt =  createEltWithClassName('div', 'work-elt');
   let infosElt =  createEltWithClassName('div', 'work-elt-infos');
   let titleElt =  createTextualElt('span', workData.id, 'work-title');
-  let priceElt =  createTextualElt('span', workData.price, 'work-price');
+  let priceElt =  createTextualElt('span', `${workData.price} €`, 'work-price');
   let likeElt =  createTextualElt('span', workData.likes, 'work-like');
   let heartElt =  createEltWithClassName('i', 'fas');
 
@@ -64,6 +65,30 @@ const createWorkElt = workData => {
   infosElt.appendChild(priceElt);
   infosElt.appendChild(likeElt);
   elt.appendChild(infosElt);
+
+  return elt;
+}
+
+/** Create photographer data */
+const createPhotographerData = (phData, worksData) => {
+  let elt = createEltWithClassName('div', 'ph-data');
+  let likesElt = document.createElement('span');
+  let priceElt = document.createElement('span');
+  let heartElt = createEltWithClassName('i', 'fas');
+  heartElt.classList.add('fa-heart');
+
+  let totalLikes = 0;
+  worksData.forEach(work => totalLikes += work.likes);
+
+  likesElt.textContent = `${totalLikes} `;
+  likesElt.appendChild(heartElt);
+
+  priceElt.textContent = `${phData.price}€ / jour`;
+
+  elt.appendChild(likesElt);
+  elt.appendChild(priceElt);
+
+  document.getElementById('photographer-page').appendChild(elt);
 
   return elt;
 }

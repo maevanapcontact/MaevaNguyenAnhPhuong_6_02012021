@@ -1,0 +1,20 @@
+.ph-data {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  bottom: 0;
+  right: 40px;
+  background: $nav-color;
+  width: 375px;
+  height: 70px;
+  border-radius: 5px;
+  padding: 0 35px;
+  font-weight: 500;
+  font-size: 1.2em;
+
+  @media (min-width: 900px) {
+    display: flex;
+  }
+}
