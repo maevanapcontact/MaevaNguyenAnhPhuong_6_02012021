@@ -1,4 +1,4 @@
-import './scss/main.scss';
+import '../scss/main.scss';
 import data from './data';
 import { createPhotographerElt } from './photographer-elt';
 import { createPhotographerPage } from './photographer-page';

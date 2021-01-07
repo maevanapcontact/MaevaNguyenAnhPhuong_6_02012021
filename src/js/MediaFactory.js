@@ -9,7 +9,7 @@ class ImageFactory {
   createElt() {
     return createImgElt(`images/${this.src}`, this.alt);
   }
-};
+}
 
 class VideoFactory {
   constructor(props) {
@@ -25,7 +25,7 @@ class VideoFactory {
 
     return elt;
   }
-};
+}
 
 export default class MediaFactory {
   constructor(type, props) {
