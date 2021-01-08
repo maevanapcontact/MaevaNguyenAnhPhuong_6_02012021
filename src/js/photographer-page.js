@@ -8,25 +8,30 @@ import { getParamFromUrl,
 } from './utils';
 import MediaFactory from './MediaFactory';
 
+const photographerId = getParamFromUrl(document.location.href, 'id');
+const photographerData = data.photographers.filter(elt => elt.id == photographerId)[0];
+const photographerWorks = data.media.filter(elt => elt.photographerId == photographerId);
+
 let contactElt = document.getElementById('ph-contact');
 let formElt = document.getElementById('contact-form');
 let coverElt = document.getElementById('cover');
 let closeBtnElt = document.getElementById('close-btn');
+let worksElt = document.getElementById('works-elts');
 
 /** Setup the form */
-contactElt.addEventListener('click', openForm);
-closeBtnElt.addEventListener('click', closeForm);
-formElt.addEventListener('submit', submitForm);
+if (document.location.pathname.includes('photographer-page.html')) {
+  contactElt.addEventListener('click', openForm);
+  closeBtnElt.addEventListener('click', closeForm);
+  formElt.addEventListener('submit', submitForm);
+
+  worksElt.addEventListener('click', incrementLikes);
+}
 
 /** Create Photographer HTML page based on ID argument */
 const createPhotographerPage = () => {
-  const photographerId = getParamFromUrl(document.location.href, 'id');
-  const photographerData = data.photographers.filter(elt => elt.id == photographerId)[0];
-  const photographerWorks = data.media.filter(elt => elt.photographerId == photographerId);
-
   fillPhotographerData(photographerData);
   createPhotographerWorksSection(photographerWorks);
-  createPhotographerData(photographerData, photographerWorks);
+  createPhotographerData(photographerData);
   addPhotographerName(photographerData);
 }
 
@@ -59,11 +64,12 @@ const createPhotographerWorksSection = works => {
 /** Create a single work element */
 const createWorkElt = workData => {
   let elt =  createEltWithClassName('div', 'work-elt');
-  let infosElt =  createEltWithClassName('div', 'work-elt-infos');
-  let titleElt =  createTextualElt('span', workData.id, 'work-title');
-  let priceElt =  createTextualElt('span', `${workData.price} €`, 'work-price');
-  let likeElt =  createTextualElt('span', workData.likes, 'work-like');
-  let heartElt =  createEltWithClassName('i', 'fas');
+  let infosElt = createEltWithClassName('div', 'work-elt-infos');
+  let titleElt = createTextualElt('span', workData.alt, 'work-title');
+  let priceElt = createTextualElt('span', `${workData.price} €`, 'work-price');
+  let likeElt = createTextualElt('span', workData.likes, 'work-like');
+  likeElt.setAttribute('id', workData.id);
+  let heartElt = createEltWithClassName('i', 'fas');
 
   heartElt.classList.add('fa-heart');
   
@@ -81,22 +87,13 @@ const createWorkElt = workData => {
 }
 
 /** Create photographer data */
-const createPhotographerData = (phData, worksData) => {
+const createPhotographerData = phData => {
   let elt = createEltWithClassName('div', 'ph-data');
-  let likesElt = document.createElement('span');
   let priceElt = document.createElement('span');
-  let heartElt = createEltWithClassName('i', 'fas');
-  heartElt.classList.add('fa-heart');
-
-  let totalLikes = 0;
-  worksData.forEach(work => totalLikes += work.likes);
-
-  likesElt.textContent = `${totalLikes} `;
-  likesElt.appendChild(heartElt);
 
   priceElt.textContent = `${phData.price}€ / jour`;
 
-  elt.appendChild(likesElt);
+  elt.appendChild(createTotalLikeElt());
   elt.appendChild(priceElt);
 
   document.getElementById('photographer-page').appendChild(elt);
@@ -126,6 +123,39 @@ function submitForm(e) {
 const addPhotographerName = phData => {
   let PhNameElt = document.getElementById('ph-form-name');
   PhNameElt.textContent = phData.name;
+}
+
+/** Increment likes on photographer's media */
+function incrementLikes(e) {
+  if (e.target.tagName === 'I') {
+    let currentWork = photographerWorks.filter(elt => elt.id == e.target.parentElement.id)[0];
+    currentWork.likes++;
+    e.target.parentElement.childNodes[0].nodeValue = currentWork.likes;
+    updateTotalLikesElt();
+  }
+}
+
+/** Creates total likes element */
+const createTotalLikeElt = () => {
+  let elt = document.createElement('span');
+  elt.setAttribute('id', 'total-likes');
+  let totalLikes = 0;
+  photographerWorks.forEach(work => totalLikes += work.likes);
+
+  let heartElt = createEltWithClassName('i', 'fas');
+  heartElt.classList.add('fa-heart');
+  elt.textContent = `${totalLikes} `;
+  elt.appendChild(heartElt);
+
+  return elt;
+}
+
+/** Update total likes element */
+const updateTotalLikesElt = () => {
+  let totalLikesElt = document.getElementById('total-likes');
+  let totalLikes = 0;
+  photographerWorks.forEach(work => totalLikes += work.likes);
+  totalLikesElt.childNodes[0].nodeValue = `${totalLikes} `;
 }
 
 export { createPhotographerPage }

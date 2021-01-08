@@ -81,5 +81,9 @@
 
   .fa-heart {
     margin-left: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
