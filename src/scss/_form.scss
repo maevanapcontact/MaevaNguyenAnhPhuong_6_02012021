@@ -1,0 +1,98 @@
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $cover-color;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  width: 100%;
+  max-width: 670px;
+
+  background: $nav-color;
+  border-radius: 5px;
+  padding: 15px 35px 35px 35px;
+  box-shadow: 0 0 15px #666;
+  z-index: 2;
+
+  @media (min-width: 600px) {
+    top: 70px;
+    width: 95%;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin: -5px 5px 20px 0;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 2.2em;
+
+    @media (min-width: 600px) {
+      font-size: 2.6em;
+    }
+  }
+
+  i {
+    font-size: 2em;
+    color: #fff;
+    margin-top: 10px;
+
+    @media (min-width: 600px) {
+      font-size: 2.4em;
+    }
+  }
+
+  i:hover {
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 1.2em;
+    margin: 5px 0 3px 0;
+
+    @media (min-width: 600px) {
+      font-size: 1.6em;
+    }
+  }
+
+  input,
+  textarea {
+    border: none;
+    padding: 5px;
+    font-size: 1.2em;
+    border-radius: 5px;
+
+    @media (min-width: 600px) {
+      font-size: 1.6em;
+    }
+  }
+
+  .form-submit {
+    margin-top: 25px;
+    background: $primary-color;
+    color: #fff;
+    font-size: 1em;
+    width: 170px;
+    height: 35px;
+    align-self: center;
+
+    @media (min-width: 600px) {
+      height: 70px;
+      align-self: start;
+    }
+  }
+}
