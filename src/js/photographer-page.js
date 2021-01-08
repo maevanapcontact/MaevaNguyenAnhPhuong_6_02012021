@@ -27,6 +27,7 @@ const createPhotographerPage = () => {
   fillPhotographerData(photographerData);
   createPhotographerWorksSection(photographerWorks);
   createPhotographerData(photographerData, photographerWorks);
+  addPhotographerName(photographerData);
 }
 
 /** Fill existing HTML content with photographer data */
@@ -119,6 +120,12 @@ function closeForm() {
 function submitForm(e) {
   e.preventDefault();
   closeForm();
+}
+
+/** Add Photographer name in form */
+const addPhotographerName = phData => {
+  let PhNameElt = document.getElementById('ph-form-name');
+  PhNameElt.textContent = phData.name;
 }
 
 export { createPhotographerPage }
