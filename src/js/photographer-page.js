@@ -8,6 +8,16 @@ import { getParamFromUrl,
 } from './utils';
 import MediaFactory from './MediaFactory';
 
+let contactElt = document.getElementById('ph-contact');
+let formElt = document.getElementById('contact-form');
+let coverElt = document.getElementById('cover');
+let closeBtnElt = document.getElementById('close-btn');
+
+/** Setup the form */
+contactElt.addEventListener('click', openForm);
+closeBtnElt.addEventListener('click', closeForm);
+formElt.addEventListener('submit', submitForm);
+
 /** Create Photographer HTML page based on ID argument */
 const createPhotographerPage = () => {
   const photographerId = getParamFromUrl(document.location.href, 'id');
@@ -91,6 +101,24 @@ const createPhotographerData = (phData, worksData) => {
   document.getElementById('photographer-page').appendChild(elt);
 
   return elt;
+}
+
+/** Open Form */
+function openForm() {
+  formElt.style.display = 'flex';
+  coverElt.style.display = 'block';
+}
+
+/** Close Form */
+function closeForm() {
+  formElt.style.display = 'none';
+  coverElt.style.display = 'none';
+}
+
+/** Submit Form */
+function submitForm(e) {
+  e.preventDefault();
+  closeForm();
 }
 
 export { createPhotographerPage }
