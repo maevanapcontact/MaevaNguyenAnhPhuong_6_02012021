@@ -14,7 +14,6 @@ import {
  * @return {object} The element created
  */
 const createPhotographerElt = data => {
-  console.log(typeof data);
   const articleElt = createEltWithClassName('article', 'photographers-elt');
   const aElt = createLinkElt(`photographer-page.html?id=${data.id}`, data.name);
   const pElt = createEltWithClassName('p', 'infos');
