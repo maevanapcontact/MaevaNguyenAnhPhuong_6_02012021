@@ -1,39 +1,57 @@
 import data from './data';
 import { createPhotographerElt } from './photographer-elt';
 
-/** Filter tags */
-const filterTags = () => {
-  const tagsElt = document.getElementById('tags');
-  let childrenElts = tagsElt.childNodes;
+/**
+ * DOM Elements
+ */
+const tagsElt = document.getElementById('tags');
+const photographersElt = document.getElementById('photographers');
 
+/**
+ * Photographers data
+ *
+ * @const {Array}
+ */
+const photographers = data.photographers;
+
+/**
+ * Generate an array of photographers to display based on filter tags
+ *
+ * @return  {[type]}  [return description]
+ */
+const getFilteredPhotographers = () => {
+  const childrenElts = tagsElt.childNodes;
   let photographersToDisplay = [];
 
-  for (let i = 0; i < childrenElts.length; i++) {
-    if (childrenElts[i].className == 'selected') {
-      for (let j = 0; j < data.photographers.length; j++) {
-        if (data.photographers[j].tags.includes(childrenElts[i].lastChild.textContent.toLowerCase()) &&
-          !photographersToDisplay.includes(data.photographers[j])
-        ) photographersToDisplay.push(data.photographers[j]);
-      }
+  childrenElts.forEach(elt => {
+    if (elt.className == 'selected') {
+      photographers.forEach(photographer => {
+        if (photographer.tags.includes(elt.lastChild.textContent.toLowerCase()) && !photographersToDisplay.includes(photographer)) {
+          photographersToDisplay.push(photographer)
+        }
+      })
     }
-  }
+  })
 
-  if (photographersToDisplay.length === 0) return data.photographers;
+  if (photographersToDisplay.length === 0) return photographers;
   return photographersToDisplay;
 }
 
-/** Toggle filter */
+/**
+ * Toggle filter tag to display new filtered photographers (DOM)
+ *
+ * @param   {object}  e  event
+ *
+ * @return  {void}
+ */
 const toggleFilter = (e) => {
-  const photographersSection = document.getElementById('photographers');
+  const target = e.target;
+  if (target.tagName === 'SPAN') target.parentNode.classList.toggle('selected');
+  if (target.tagName === 'LI') target.classList.toggle('selected');
 
-  if (e.target.tagName === 'SPAN') e.target.parentNode.classList.toggle('selected');
-  if (e.target.tagName === 'LI') e.target.classList.toggle('selected');
-
-  let photographerToDisplay = filterTags();
-  photographersSection.innerHTML = '';
-  for (let i = 0; i < photographerToDisplay.length; i++) {
-    photographersSection.appendChild(createPhotographerElt(photographerToDisplay[i]));
-  }
+  let photographerToDisplay = getFilteredPhotographers();
+  photographersElt.innerHTML = '';
+  photographerToDisplay.forEach(photographer => photographersElt.appendChild(createPhotographerElt(photographer)));
 }
 
-export { filterTags, toggleFilter }
+export { getFilteredPhotographers, toggleFilter }

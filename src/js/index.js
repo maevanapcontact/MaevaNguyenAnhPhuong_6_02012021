@@ -1,20 +1,16 @@
 import '../scss/main.scss';
-import { createPhotographerElt } from './photographer-elt';
+import { createHomepage } from './homepage';
 import { createPhotographerPage } from './photographer-page';
-import { filterTags, toggleFilter } from './filter-tags';
 
-const photographersSection = document.getElementById('photographers');
+const path = document.location.pathname;
 
-if (document.location.pathname.includes('index.html')) {
-  const tagsElt = document.getElementById('tags');
-  tagsElt.addEventListener('click', toggleFilter);
+/**
+ * Build the homepage
+ */
+if (path.includes('index.html')) createHomepage();
 
-  let photographerToDisplay = filterTags();
-  for (let i = 0; i < photographerToDisplay.length; i++) {
-    photographersSection.appendChild(createPhotographerElt(photographerToDisplay[i]));
-  }
-}
 
-if (document.location.pathname.includes('photographer-page.html')) {
-  createPhotographerPage();
-}
+/**
+ * Build the photographer page
+ */
+if (path.includes('photographer-page.html')) createPhotographerPage();

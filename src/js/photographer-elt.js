@@ -6,24 +6,31 @@ import {
   createInteractiveListElt
 } from './utils';
 
-/** Creates the photographer element */
+/**
+ * Build DOM photographer Element
+ * 
+ * @param {object} data The database model
+ *
+ * @return {object} The element created
+ */
 const createPhotographerElt = data => {
-  let articleElt = createEltWithClassName('article', 'photographers-elt');
-  let aElt = createLinkElt(`photographer-page.html?id=${data.id}`, data.name);
-  let pElt = createEltWithClassName('p', 'infos');
-  let ulElt = createEltWithClassName('ul', 'tags');
+  console.log(typeof data);
+  const articleElt = createEltWithClassName('article', 'photographers-elt');
+  const aElt = createLinkElt(`photographer-page.html?id=${data.id}`, data.name);
+  const pElt = createEltWithClassName('p', 'infos');
+  const ulElt = createEltWithClassName('ul', 'tags');
   articleElt.appendChild(aElt);
   articleElt.appendChild(pElt);
   articleElt.appendChild(ulElt);
 
-  let imgElt = createImgElt(`images/${data.portrait}`, data.alt);
-  let h2Elt = createTextualElt('h2', data.name, 'photographer-name');
+  const imgElt = createImgElt(`images/${data.portrait}`, data.alt);
+  const h2Elt = createTextualElt('h2', data.name, 'photographer-name');
   aElt.appendChild(imgElt);
   aElt.appendChild(h2Elt);
 
-  let cityElt = createTextualElt('span', `${data.city}, ${data.country}`, 'infos-city');
-  let taglineElt = createTextualElt('span', data.tagline, 'infos-tagline');
-  let priceElt = createTextualElt('span', `${data.price}€/jour`, 'infos-price');
+  const cityElt = createTextualElt('span', `${data.city}, ${data.country}`, 'infos-city');
+  const taglineElt = createTextualElt('span', data.tagline, 'infos-tagline');
+  const priceElt = createTextualElt('span', `${data.price}€/jour`, 'infos-price');
   pElt.appendChild(cityElt);
   pElt.appendChild(taglineElt);
   pElt.appendChild(priceElt);
