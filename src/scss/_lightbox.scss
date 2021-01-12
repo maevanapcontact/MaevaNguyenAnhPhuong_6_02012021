@@ -19,7 +19,8 @@
     color: $primary-color;
   }
 
-  img {
+  img,
+  video {
     max-width: calc(100vw - 80px);
     max-height: calc(100vh - 100px);
     height: auto;
@@ -27,6 +28,10 @@
 
     @media (min-width: 800px) {
       max-width: calc(100vw - 180px);
+    }
+
+    @media (min-width: 1250px) {
+      max-width: 1070px;
     }
   }
 

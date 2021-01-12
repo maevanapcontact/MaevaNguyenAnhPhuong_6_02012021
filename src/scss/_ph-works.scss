@@ -69,6 +69,11 @@
     }
   }
 
+  img:hover,
+  video:hover {
+    cursor: pointer;
+  }
+
   &-infos {
     display: flex;
     justify-content: space-between;

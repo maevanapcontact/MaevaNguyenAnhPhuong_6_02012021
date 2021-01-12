@@ -8,6 +8,7 @@ import { getParamFromUrl,
 } from './utils';
 import { addPhotographerNameInForm } from './form';
 import { createTotalLikeElt } from './likes';
+import { manageLightBox, configureLightboxControls } from './lightbox';
 import MediaFactory from './MediaFactory';
 
 /**
@@ -49,6 +50,8 @@ const fillPhotographerHeader = () => {
 
   const portraitElt = document.getElementById('ph-portrait');
   fillImgElt(portraitElt, `images/${photographerData.portrait}`, photographerData.alt);
+
+  configureLightboxControls();
 }
 
 /**
@@ -81,7 +84,9 @@ const createWorkElt = workData => {
   
   const workType = workData.video === undefined ? 'image' : 'video';
   const media = new MediaFactory(workType, workData);
-  elt.appendChild(media.createElt());
+  const mediaElt = media.createElt();
+  elt.appendChild(mediaElt);
+  mediaElt.addEventListener('click', manageLightBox(media));
 
   likeElt.appendChild(heartElt);
   infosElt.appendChild(titleElt);
