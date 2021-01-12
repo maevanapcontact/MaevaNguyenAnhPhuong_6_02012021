@@ -61,7 +61,7 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
 }
 
 /**
- * Create a list of interactive elements
+ * Create a list of interactive tag elements
  *
  * @param   {object}  parentElt  element to add child to
  * @param   {string}  eltText    text to add to the created element
@@ -70,10 +70,13 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
  */
 const createInteractiveListElt = (parentElt, eltText) => {
   const liElt = document.createElement('li');
-  const linkElt = createLinkElt('#', eltText);
-  const text = document.createTextNode(`#${eltText}`);
-  linkElt.appendChild(text);
-  liElt.appendChild(linkElt);
+  const spanElt = document.createElement('span');
+  spanElt.textContent = '#';
+  const tagElt = createEltWithClassName('span', 'filter-tag');
+  tagElt.textContent = eltText;
+  
+  liElt.appendChild(spanElt);
+  liElt.appendChild(tagElt);
 
   parentElt.appendChild(liElt);
 }
