@@ -37,12 +37,22 @@ function closeForm() {
 }
 
 /**
- * Submit the form
+ * Display form content when submitting it
  *
  * @return  {void}
  */
 function submitForm(e) {
   e.preventDefault();
+  const firstnameInput = document.getElementById('first-name');
+  const lastnameInput = document.getElementById('last-name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+
+  console.log(`Prénom : ${firstnameInput.value}`);
+  console.log(`Nom : ${lastnameInput.value}`);
+  console.log(`Email : ${emailInput.value}`);
+  console.log(`Votre message : ${messageInput.value}`);
+
   closeForm();
 }
 
