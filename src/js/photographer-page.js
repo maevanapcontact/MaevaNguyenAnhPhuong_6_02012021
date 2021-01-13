@@ -81,6 +81,8 @@ const createWorkElt = workData => {
   const heartElt = createEltWithClassName('i', 'fas');
 
   heartElt.classList.add('fa-heart');
+  heartElt.setAttribute('aria-label', 'likes');
+  heartElt.setAttribute('role', 'button');
   
   const workType = workData.video === undefined ? 'image' : 'video';
   const media = new MediaFactory(workType, workData);
@@ -104,7 +106,8 @@ const createWorkElt = workData => {
  */
 const fillPhotographerData = () => {
   const pageElt =  document.getElementById('photographer-page');
-  const elt = createEltWithClassName('div', 'ph-data');
+  const elt = createEltWithClassName('aside', 'ph-data');
+  elt.setAttribute('aria-label', 'photographer likes and price');
   const priceElt = document.createElement('span');
 
   priceElt.textContent = `${photographerData.price}€ / jour`;

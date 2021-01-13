@@ -7,7 +7,10 @@ class ImageFactory {
   }
 
   createElt() {
-    return createImgElt(`images/${this.src}`, `${this.alt}, closeup view`);
+    const elt = createImgElt(`images/${this.src}`, `${this.alt}, closeup view`);
+    elt.setAttribute('role', 'button');
+
+    return elt;
   }
 
   createFullElt() {
@@ -31,7 +34,10 @@ class VideoFactory {
   }
 
   createElt() {
-    return this.domCreation(`${this.alt}, closeup view`);
+    const elt = this.domCreation(`${this.alt}, closeup view`);
+    elt.setAttribute('role', 'button');
+
+    return elt;
   }
 
   createFullElt() {

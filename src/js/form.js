@@ -3,6 +3,7 @@
  */
 const contactElt = document.getElementById('ph-contact');
 const formElt = document.getElementById('contact-form');
+const dialogElt = document.getElementById('form-dialog');
 const coverElt = document.getElementById('cover');
 const closeBtnElt = document.getElementById('close-btn');
 
@@ -22,7 +23,7 @@ if (path.includes('photographer-page.html')) {
  * @return  {void}
  */
 function openForm() {
-  formElt.style.display = 'flex';
+  dialogElt.style.display = 'block';
   coverElt.style.display = 'block';
 }
 
@@ -32,7 +33,7 @@ function openForm() {
  * @return  {void}
  */
 function closeForm() {
-  formElt.style.display = 'none';
+  dialogElt.style.display = 'none';
   coverElt.style.display = 'none';
 }
 

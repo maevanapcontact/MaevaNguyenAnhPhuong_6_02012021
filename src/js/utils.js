@@ -70,6 +70,7 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
  */
 const createInteractiveListElt = (parentElt, eltText) => {
   const liElt = document.createElement('li');
+  liElt.setAttribute('role', 'button');
   const spanElt = document.createElement('span');
   spanElt.textContent = '#';
   const tagElt = createEltWithClassName('span', 'filter-tag');

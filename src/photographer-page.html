@@ -10,7 +10,7 @@
   </head>
   <body>
     <!-- BANNER -->
-    <header class="banner">
+    <header class="banner" role="banner">
       <a href="index.html" title="Homepage">
         <img src="medias/logo.png" alt="Fisheye Home page" width="512" height="128">
       </a>
@@ -18,7 +18,7 @@
 
     <!-- MAIN PHOTOGRAPHER PAGE-->
     <main class="photographer-page" id="photographer-page">
-      <header class="ph-header">
+      <header class="ph-header" aria-label="photographer information">
         <div class="ph-infos">
           <h1 class="ph-name" id="ph-title"></h1>
           <span class="ph-city" id="ph-city"></span>
@@ -29,8 +29,8 @@
         <img src="medias/MimiKeel.jpg" alt="" id="ph-portrait">
       </header>
 
-      <section class="ph-works">
-        <div class="works-sort">
+      <section class="ph-works" aria-label="photographer works">
+        <div class="works-sort" aria-label="sort works">
           <label for="sort-work">Trier par</label>
           <select name="sort" id="sort-work">
             <option value="popularite">Popularité</option>
@@ -38,47 +38,66 @@
             <option value="titre">Titre</option>
           </select>
         </div>
-        <div class="works-elts" id="works-elts">
-        </div>
+        <div class="works-elts" id="works-elts"></div>
       </section>
     </main>
 
     <!-- FORM -->
     <div class="cover" id="cover"></div>
-    <form
-      action="photographer-page.html"
-      method="POST"
-      class="contact-form"
-      id="contact-form"
-      novalidate
-    >
-      <header>
-        <h1>
-          <span>Contactez-moi</span>
-          <span class="ph-form-name" id="ph-form-name"></span>
-        </h1>
-        <i class="fas fa-times" id="close-btn" title="Close Contact form"></i>
-      </header>
-      <label for="first-name">Prénom</label>
-      <input type="text" name="first-name" id="first-name">
-      <label for="last-name">Nom</label>
-      <input type="text" name="last-name" id="last-name">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email">
-      <label for="message">Votre message</label>
-      <textarea name="message" id="message" cols="20" rows="5"></textarea>
-      <input type="submit" value="Envoyer" class="form-submit" title="Send">
-    </form>
+    <dialog class="form-dialog" id="form-dialog" aria-label="contact me form">
+      <form
+        action="photographer-page.html"
+        method="POST"
+        class="contact-form"
+        id="contact-form"
+        novalidate
+      >
+        <header aria-label="contact form header">
+          <h1>
+            <span>Contactez-moi</span>
+            <span class="ph-form-name" id="ph-form-name"></span>
+          </h1>
+          <i
+            class="fas fa-times"
+            id="close-btn"
+            title="Close Contact form"
+            role="button"
+          ></i>
+        </header>
+        <label for="first-name">Prénom</label>
+        <input type="text" name="first-name" id="first-name">
+        <label for="last-name">Nom</label>
+        <input type="text" name="last-name" id="last-name">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <label for="message">Votre message</label>
+        <textarea name="message" id="message" cols="20" rows="5"></textarea>
+        <input type="submit" value="Envoyer" class="form-submit" title="Send">
+      </form>
+    </dialog>
 
     <!-- LIGHTBOX -->
     <div class="lightbox-cover" id="lightbox-cover"></div>
-    <div class="lightbox" id="lightbox">
+    <dialog class="lightbox" id="lightbox" aria-label="image closeup view">
       <div class="lightbox-media">
         <div id="lightbox-content"></div>
-        <i class="fas fa-times lightbox-close" id="lightbox-close" title="Close dialog"></i>
-        <i class="fas fa-chevron-left lightbox-nav lightbox-left" title="Previous image"></i>
-        <i class="fas fa-chevron-right lightbox-nav lightbox-right" title="Next image"></i>
+        <i
+          class="fas fa-times lightbox-close"
+          id="lightbox-close"
+          title="Close dialog"
+          role="button"
+        ></i>
+        <i
+          class="fas fa-chevron-left lightbox-nav lightbox-left"
+          title="Previous image"
+          role="button"
+        ></i>
+        <i
+          class="fas fa-chevron-right lightbox-nav lightbox-right"
+          title="Next image"
+          role="button"
+        ></i>
       </div>
-    </div>
+    </dialog>
   </body>
 </html>

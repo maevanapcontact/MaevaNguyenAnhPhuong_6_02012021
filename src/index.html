@@ -9,13 +9,17 @@
 </head>
 <body>
   <!-- BANNER -->
-  <header class="banner">
+  <header class="banner" role="banner">
     <a href="index.html" title="Homepage">
       <img src="medias/logo.png" alt="Fisheye Home page" width="512" height="128">
     </a>
 
     <!-- Main Nav -->
-    <nav class="main-nav">
+    <nav
+      class="main-nav"
+      aria-label="photographer categories"
+      role="navigation"
+    >
       <ul class="tags" id="tags">
         <li>
           <span>#</span>
@@ -51,16 +55,15 @@
         </li>
       </ul>
 
-      <a href="#" class="interactive-nav" title="Passer au contenu">Passer au contenu</a>
+      <a href="#homepage-main" class="interactive-nav" title="Passer au contenu">Passer au contenu</a>
     </nav>
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="main-content">
+  <main class="main-content" id="homepage-main">
     <h1>Nos photographes</h1>
 
-    <section class="photographers" id="photographers">
-    </section>
+    <section class="photographers" id="photographers" aria-label="photographers"></section>
   </main>
 </body>
 </html>

@@ -44,6 +44,7 @@ const createTotalLikeElt = () => {
 
   const heartElt = createEltWithClassName('i', 'fas');
   heartElt.classList.add('fa-heart');
+  heartElt.setAttribute('aria-label', 'likes');
   elt.textContent = `${totalLikes} `;
   elt.appendChild(heartElt);
 

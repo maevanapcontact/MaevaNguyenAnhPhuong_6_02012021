@@ -9,9 +9,8 @@
   display: none;
 }
 
-.contact-form {
+.form-dialog {
   display: none;
-  flex-direction: column;
 
   position: fixed;
   top: 0;
@@ -21,17 +20,23 @@
   min-width: 300px;
   width: 100%;
   max-width: 670px;
-
-  background: $nav-color;
-  border-radius: 5px;
-  padding: 15px 35px 35px 35px;
-  box-shadow: 0 0 15px #666;
   z-index: 2;
+  border: none;
 
   @media (min-width: 600px) {
     top: 70px;
     width: 95%;
   }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  background: $nav-color;
+  border-radius: 5px;
+  padding: 25px 35px 35px 35px;
+  box-shadow: 0 0 15px #666;
 
   header {
     display: flex;
