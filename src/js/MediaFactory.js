@@ -7,21 +7,22 @@ class ImageFactory {
   }
 
   createElt() {
-    return createImgElt(`images/${this.src}`, this.alt);
+    return createImgElt(`images/${this.src}`, `${this.alt}, closeup view`);
   }
 
   createFullElt() {
-    return this.createElt();
+    return createImgElt(`images/${this.src}`, this.alt);
   }
 }
 
 class VideoFactory {
   constructor(props) {
     this.src = props.video;
+    this.alt = props.alt;
   }
 
-  createElt() {
-    let elt = createTextualElt('video', `Le format de vidéo n'est pas reconnu par votre navigateur`, 'video-elt');
+  domCreation(text) {
+    let elt = createTextualElt('video', text, 'video-elt');
     let srcElt = document.createElement('source');
     srcElt.setAttribute('src', `videos/${this.src}`);
     elt.appendChild(srcElt);
@@ -29,8 +30,12 @@ class VideoFactory {
     return elt;
   }
 
+  createElt() {
+    return this.domCreation(`${this.alt}, closeup view`);
+  }
+
   createFullElt() {
-    let elt = this.createElt();
+    let elt = this.domCreation(this.alt);
     elt.setAttribute('controls', true);
 
     return elt;

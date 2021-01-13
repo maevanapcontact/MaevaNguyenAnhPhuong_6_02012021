@@ -22,7 +22,7 @@ const createPhotographerElt = data => {
   articleElt.appendChild(pElt);
   articleElt.appendChild(ulElt);
 
-  const imgElt = createImgElt(`images/${data.portrait}`, data.alt);
+  const imgElt = createImgElt(`images/${data.portrait}`, '');
   const h2Elt = createTextualElt('h2', data.name, 'photographer-name');
   aElt.appendChild(imgElt);
   aElt.appendChild(h2Elt);
