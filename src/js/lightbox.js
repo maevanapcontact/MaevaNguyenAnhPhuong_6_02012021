@@ -62,7 +62,7 @@ const closeLightBox = () => {
  */
 const fillLightbox = media => {
   contentElt.innerHTML = '';
-  contentElt.appendChild(media.createElt());
+  contentElt.appendChild(media.createFullElt());
 }
 
 export { manageLightBox, configureLightboxControls };

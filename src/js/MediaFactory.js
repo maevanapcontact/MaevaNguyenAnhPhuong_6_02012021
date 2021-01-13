@@ -9,6 +9,10 @@ class ImageFactory {
   createElt() {
     return createImgElt(`images/${this.src}`, this.alt);
   }
+
+  createFullElt() {
+    return this.createElt();
+  }
 }
 
 class VideoFactory {
@@ -18,10 +22,16 @@ class VideoFactory {
 
   createElt() {
     let elt = createTextualElt('video', `Le format de vidéo n'est pas reconnu par votre navigateur`, 'video-elt');
-    elt.setAttribute('controls', true);
     let srcElt = document.createElement('source');
     srcElt.setAttribute('src', `videos/${this.src}`);
     elt.appendChild(srcElt);
+
+    return elt;
+  }
+
+  createFullElt() {
+    let elt = this.createElt();
+    elt.setAttribute('controls', true);
 
     return elt;
   }
