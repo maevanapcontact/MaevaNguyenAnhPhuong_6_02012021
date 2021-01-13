@@ -101,7 +101,7 @@ export default {
     {
       "id": 9275938,
       "photographerId": 82,
-      "image": "Event-_eddingGazebo.jpg",
+      "image": "Event_WeddingGazebo.jpg",
       "alt": "Event Edding Gazebo",
       "tags": ["events"],
       "likes": 69,
@@ -212,7 +212,7 @@ export default {
     {
       "id": 725639493,
       "photographerId": 925,
-      "image": "Event_ProductPitchjpg",
+      "image": "Event_ProductPitch.jpg",
       "alt": "Event Product Pitch",
       "tags": ["events"],
       "likes": 3,
@@ -444,7 +444,7 @@ export default {
     {
       "id": 95234343,
       "photographerId": 243,
-      "image": "Animals_Rainbow.jpg.jpg",
+      "image": "Animals_Rainbow.jpg",
       "alt": "Animals Rainbow",
       "tags": ["animals"],
       "likes": 59,
