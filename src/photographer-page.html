@@ -39,13 +39,26 @@
       </header>
 
       <section class="ph-works" aria-label="photographer works">
-        <div class="works-sort" aria-label="sort works">
-          <label for="sort-work">Trier par</label>
-          <select name="sort" id="sort-work">
-            <option value="popularite">Popularité</option>
-            <option value="date">Date</option>
-            <option value="titre">Titre</option>
-          </select>
+        <div class="works-sort">
+          <p id="sort-label" role="label">Trier par</p>
+          <button
+            id="sort-btn"
+            aria-haspopup="true"
+            aria-controls="sort-list"
+            aria-expanded="false"
+            value="Popularité"
+          ></button>
+          <ul
+            id="sort-list"
+            role="listbox"
+            tabindex="0"
+            aria-activedescendant="sort-1"
+            aria-labelledby="sort-label"
+          >
+            <li role="option" id="sort-1" class="list-selected" aria-selected="true">Popularité</li>
+            <li role="option" id="sort-2" class="list-selected" aria-selected="false">Date</li>
+            <li role="option" id="sort-3" class="list-selected" aria-selected="false">Titre</li>
+          </ul>
         </div>
         <div class="works-elts" id="works-elts"></div>
       </section>

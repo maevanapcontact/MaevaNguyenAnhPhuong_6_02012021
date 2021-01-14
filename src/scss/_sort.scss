@@ -1,0 +1,25 @@
+.works-sort {
+  display: none;
+  margin: 20px 0 0 20px;
+
+  @media (min-width: 800px) {
+    display: block;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 100px;
+  }
+
+  label {
+    font-weight: 700;
+    margin-right: 25px;
+  }
+
+  select {
+    background: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+  }
+}
