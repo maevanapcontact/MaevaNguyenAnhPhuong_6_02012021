@@ -83,7 +83,6 @@
         method="POST"
         class="contact-form"
         id="contact-form"
-        novalidate
       >
         <header aria-label="contact form header">
           <h1 id="form-title">
@@ -105,6 +104,7 @@
           name="first-name"
           id="first-name"
           aria-labelledby="label-firstname"
+          required
         >
 
         <label for="last-name" id="label-lastname">Nom</label>
@@ -113,6 +113,7 @@
           name="last-name"
           id="last-name"
           aria-labelledby="label-lastname"
+          required
         >
 
         <label for="email" id="label-email">Email</label>
@@ -121,6 +122,7 @@
           name="email"
           id="email"
           aria-labelledby="label-email"
+          required
         >
 
         <label for="message" id="label-message">Votre message</label>
