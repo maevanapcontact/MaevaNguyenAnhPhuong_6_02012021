@@ -1,10 +1,15 @@
+import {
+  openDialogModal,
+  closeDialogModal
+} from './photographer-page';
+
 /**
  * DOM Elements
  */
 const contactElt = document.getElementById('ph-contact');
 const formElt = document.getElementById('contact-form');
-const dialogElt = document.getElementById('form-dialog');
-const coverElt = document.getElementById('cover');
+const formDialogElt = document.getElementById('form-dialog');
+const coverFormElt = document.getElementById('cover');
 const closeBtnElt = document.getElementById('close-btn');
 
 /**
@@ -23,8 +28,12 @@ if (path.includes('photographer-page.html')) {
  * @return  {void}
  */
 function openForm() {
-  dialogElt.style.display = 'block';
-  coverElt.style.display = 'block';
+  openDialogModal();
+
+  formDialogElt.style.display = 'block';
+  formDialogElt.setAttribute('aria-hidden', 'false');
+  coverFormElt.style.display = 'block';
+  coverFormElt.setAttribute('aria-hidden', 'false');
 }
 
 /**
@@ -33,8 +42,12 @@ function openForm() {
  * @return  {void}
  */
 function closeForm() {
-  dialogElt.style.display = 'none';
-  coverElt.style.display = 'none';
+  closeDialogModal();
+
+  formDialogElt.style.display = 'none';
+  formDialogElt.setAttribute('aria-hidden', 'true');
+  coverFormElt.style.display = 'none';
+  coverFormElt.setAttribute('aria-hidden', 'true');
 }
 
 /**

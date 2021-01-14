@@ -1,3 +1,8 @@
+import {
+  openDialogModal,
+  closeDialogModal
+} from './photographer-page';
+
 /**
  * DOM Variables
  */
@@ -37,8 +42,12 @@ const manageLightBox = function(mediaElt) {
  * @return  {void}
  */
 const openLightbox = () => {
+  openDialogModal();
+
   coverElt.style.display = 'block';
+  coverElt.setAttribute('aria-hidden', 'false');
   lightboxElt.style.display = 'block';
+  lightboxElt.setAttribute('aria-hidden', 'false');
   htmlElt.scrollTop = 0;
   bodyElt.scrollTop = 0;
   bodyElt.style.overflow = 'hidden';
@@ -50,8 +59,12 @@ const openLightbox = () => {
  * @return  {void}
  */
 const closeLightBox = () => {
+  closeDialogModal();
+
   coverElt.style.display = 'none';
+  coverElt.setAttribute('aria-hidden', 'true');
   lightboxElt.style.display = 'none';
+  lightboxElt.setAttribute('aria-hidden', 'true');
   bodyElt.style.overflow = 'auto';
 }
 

@@ -11,6 +11,13 @@ import { createTotalLikeElt } from './likes';
 import { manageLightBox, configureLightboxControls } from './lightbox';
 import MediaFactory from './MediaFactory';
 
+
+/**
+ * DOM variables
+ */
+const headerBannerElt = document.getElementById('header-banner');
+const photographerPageElt = document.getElementById('photographer-page');
+
 /**
  * Photographer's variables
  */
@@ -118,4 +125,29 @@ const fillPhotographerData = () => {
   pageElt.appendChild(elt);
 }
 
-export { createPhotographerPage, photographerWorks }
+/**
+ * Hide page content from accessibility when opening a modal
+ *
+ * @return  {void}
+ */
+const openDialogModal = () => {
+  headerBannerElt.setAttribute('aria-hidden', 'true');
+  photographerPageElt.setAttribute('aria-hidden', 'true');
+}
+
+/**
+ * Show page content from accessibility when closing a modal
+ *
+ * @return  {void}
+ */
+const closeDialogModal = () => {
+  headerBannerElt.setAttribute('aria-hidden', 'false');
+  photographerPageElt.setAttribute('aria-hidden', 'false');
+}
+
+export {
+  createPhotographerPage,
+  photographerWorks,
+  openDialogModal,
+  closeDialogModal
+}

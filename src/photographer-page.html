@@ -10,14 +10,23 @@
   </head>
   <body>
     <!-- BANNER -->
-    <header class="banner" role="banner">
+    <header
+      class="banner"
+      role="banner"
+      id="header-banner"
+      aria-hidden="false"
+    >
       <a href="index.html" title="Homepage">
         <img src="medias/logo.png" alt="Fisheye Home page" width="512" height="128">
       </a>
     </header>
 
     <!-- MAIN PHOTOGRAPHER PAGE-->
-    <main class="photographer-page" id="photographer-page">
+    <main
+      class="photographer-page"
+      id="photographer-page"
+      aria-hidden="false"
+    >
       <header class="ph-header" aria-label="photographer information">
         <div class="ph-infos">
           <h1 class="ph-name" id="ph-title"></h1>
@@ -43,12 +52,18 @@
     </main>
 
     <!-- FORM -->
-    <div class="cover" id="cover"></div>
+    <div
+      class="cover"
+      id="cover"
+      aria-hidden="true"
+    ></div>
     <dialog
+      role="dialog"
       class="form-dialog"
       id="form-dialog"
       aria-label="contact me form"
       aria-labelledby="form-title"
+      aria-hidden="true"
     >
       <form
         action="photographer-page.html"
@@ -114,8 +129,17 @@
     </dialog>
 
     <!-- LIGHTBOX -->
-    <div class="lightbox-cover" id="lightbox-cover"></div>
-    <dialog class="lightbox" id="lightbox" aria-label="image closeup view">
+    <div
+      class="lightbox-cover"
+      id="lightbox-cover"
+      aria-hidden="true"
+    ></div>
+    <dialog
+      class="lightbox"
+      id="lightbox"
+      aria-label="image closeup view"
+      aria-hidden="true"
+    >
       <div class="lightbox-media">
         <div id="lightbox-content"></div>
         <i
