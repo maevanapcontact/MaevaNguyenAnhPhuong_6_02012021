@@ -4,6 +4,7 @@ class ImageFactory {
   constructor(props) {
     this.src = props.image;
     this.alt = props.alt;
+    this.id = props.id;
   }
 
   createElt() {
@@ -14,7 +15,10 @@ class ImageFactory {
   }
 
   createFullElt() {
-    return createImgElt(`images/${this.src}`, this.alt);
+    const elt = createImgElt(`images/${this.src}`, this.alt);
+    elt.setAttribute('id', 'current-media-lightbox');
+
+    return elt;
   }
 }
 
@@ -22,6 +26,7 @@ class VideoFactory {
   constructor(props) {
     this.src = props.video;
     this.alt = props.alt;
+    this.id = props.id;
   }
 
   domCreation(text) {
@@ -43,6 +48,7 @@ class VideoFactory {
   createFullElt() {
     let elt = this.domCreation(this.alt);
     elt.setAttribute('controls', true);
+    elt.setAttribute('id', 'current-media-lightbox');
 
     return elt;
   }

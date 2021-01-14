@@ -142,22 +142,27 @@
     >
       <div class="lightbox-media">
         <div id="lightbox-content"></div>
-        <i
-          class="fas fa-times lightbox-close"
+        <button
+          class="lightbox-close"
           id="lightbox-close"
           title="Close dialog"
-          role="button"
-        ></i>
-        <i
-          class="fas fa-chevron-left lightbox-nav lightbox-left"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <button
+          class="lightbox-nav lightbox-left"
+          id="lightbox-previous"
           title="Previous image"
-          role="button"
-        ></i>
-        <i
-          class="fas fa-chevron-right lightbox-nav lightbox-right"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button
+          class="lightbox-nav lightbox-right"
+          id="lightbox-next"
           title="Next image"
-          role="button"
-        ></i>
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </dialog>
   </body>

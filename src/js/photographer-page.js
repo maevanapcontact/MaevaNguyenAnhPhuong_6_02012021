@@ -68,7 +68,7 @@ const fillPhotographerHeader = () => {
  */
 const createPhotographerWorksSection = () => {
   const worksElts = document.getElementById('works-elts');
-  photographerWorks.forEach(work => worksElts.appendChild(createWorkElt(work)))
+  photographerWorks.forEach(work => worksElts.appendChild(createWorkElt(work)));
 }
 
 /**
@@ -81,7 +81,7 @@ const createPhotographerWorksSection = () => {
 const createWorkElt = workData => {
   const elt =  createEltWithClassName('div', 'work-elt');
   const infosElt = createEltWithClassName('div', 'work-elt-infos');
-  const titleElt = createTextualElt('span', workData.alt, 'work-title');
+  const titleElt = createTextualElt('h2', workData.alt, 'work-title');
   const priceElt = createTextualElt('span', `${workData.price} €`, 'work-price');
   const likeElt = createTextualElt('span', workData.likes, 'work-like');
   likeElt.setAttribute('id', workData.id);
