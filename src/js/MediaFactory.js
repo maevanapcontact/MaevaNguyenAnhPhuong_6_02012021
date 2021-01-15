@@ -5,6 +5,7 @@ class ImageFactory {
     this.src = props.image;
     this.alt = props.alt;
     this.id = props.id;
+    this.type = 'image';
   }
 
   createElt() {
@@ -27,6 +28,7 @@ class VideoFactory {
     this.src = props.video;
     this.alt = props.alt;
     this.id = props.id;
+    this.type = 'video';
   }
 
   domCreation(text) {

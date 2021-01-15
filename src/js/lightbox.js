@@ -49,6 +49,11 @@ const manageLightBox = function(mediaElt) {
   return function manage() {
     openLightbox();
     fillLightbox(mediaElt)
+
+    const mediaClicked = document.getElementById('current-media-lightbox');
+    if (mediaElt.type === 'image') closeElt.focus();
+    if (mediaElt.type === 'video') mediaClicked.focus();
+    lightboxElt.addEventListener('keydown', keyboardTrapLightbox);
   }
 }
 
@@ -68,6 +73,50 @@ const openLightbox = () => {
   bodyElt.scrollTop = 0;
   bodyElt.style.overflow = 'hidden';
 }
+
+/**
+ * Manage Keyboard trap on lightbox
+ *
+ * @param  {object} evt browser event
+ * 
+ * @return {void}
+ */
+const keyboardTrapLightbox = evt => {
+  const currentMedia = document.getElementById('current-media-lightbox');
+
+  if (currentMedia.tagName === 'IMG') {
+    if (evt.keyCode === 9) {
+      if (evt.shiftKey) {
+        if (document.activeElement === closeElt) {
+          evt.preventDefault();
+          nextElt.focus();
+        }
+      } else {
+        if (document.activeElement === nextElt) {
+          evt.preventDefault();
+          closeElt.focus();
+        }
+      }
+    }
+  } else {
+    if (evt.keyCode === 9) {
+      if (evt.shiftKey) {
+        if (document.activeElement === currentMedia) {
+          evt.preventDefault();
+          nextElt.focus();
+        }
+      } else {
+        if (document.activeElement === nextElt) {
+          evt.preventDefault();
+          currentMedia.focus();
+        }
+      }
+    }
+  }
+
+  if (evt.keyCode === 27) closeLightBox();
+}
+
 
 /**
  * Remove the lightbox from the browser view
@@ -148,6 +197,12 @@ const goToNextMedia = () => {
   createNewMedia();
 }
 
+
+/**
+ * Manage the keyboard navigation
+ *
+ * @return {void}
+ */
 const manageKeyboardNav = evt => {
   switch (evt.key) {
     case "Left":
