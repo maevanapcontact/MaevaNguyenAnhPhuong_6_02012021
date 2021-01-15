@@ -1,5 +1,5 @@
 .works-sort {
-  display: none;
+  position: relative;
   margin: 20px 0 0 20px;
 
   @media (min-width: 800px) {
@@ -10,9 +10,49 @@
     margin-left: 100px;
   }
 
-  label {
+  .sort-label {
     font-weight: 700;
     margin-right: 25px;
+    font-size: 1.2rem;
+  }
+
+  .sort-list {
+    position: absolute;
+    top: -15px;
+    left: 120px;
+    width: 170px;
+    background: $primary-color;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sort-list li {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 100%;
+    padding: 18px 20px;
+  }
+
+  .sort-list li:hover {
+    cursor: pointer;
+  }
+
+  .list-first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sort-list li:nth-child(2) {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
   }
 
   select {
