@@ -13,6 +13,15 @@ const coverFormElt = document.getElementById('cover');
 const closeBtnElt = document.getElementById('close-btn');
 
 /**
+ * DOM Form Elements
+ */
+const firstnameInput = document.getElementById('first-name');
+const lastnameInput = document.getElementById('last-name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+const formSubmitBtnElt = document.getElementById('form-submit-btn');
+
+/**
  * Add the event listeners for the form
  */
 const path = document.location.pathname;
@@ -34,6 +43,43 @@ function openForm() {
   formDialogElt.setAttribute('aria-hidden', 'false');
   coverFormElt.style.display = 'block';
   coverFormElt.setAttribute('aria-hidden', 'false');
+
+  keyboardTrapForm();
+}
+
+/**
+ * Manage the keyboard trap focus and listener
+ *
+ * @return  {void}
+ */
+const keyboardTrapForm = () => {
+  firstnameInput.focus();
+  formDialogElt.addEventListener('keydown', keyboardNavigationForm);
+}
+
+/**
+ * Manage the keyboard navigation inside the form
+ *
+ * @param   {object}  evt  browser event
+ *
+ * @return  {void}
+ */
+function keyboardNavigationForm(evt) {
+  if (evt.keyCode === 9) {
+    if (evt.shiftKey) {
+      if (document.activeElement === closeBtnElt) {
+        evt.preventDefault();
+        formSubmitBtnElt.focus();
+      }
+    } else {
+      if (document.activeElement === formSubmitBtnElt) {
+        evt.preventDefault();
+        closeBtnElt.focus();
+      }
+    }
+  }
+
+  if (evt.keyCode === 27) closeForm();
 }
 
 /**
@@ -57,11 +103,6 @@ function closeForm() {
  */
 function submitForm(e) {
   e.preventDefault();
-  const firstnameInput = document.getElementById('first-name');
-  const lastnameInput = document.getElementById('last-name');
-  const emailInput = document.getElementById('email');
-  const messageInput = document.getElementById('message');
-
   console.log(`Prénom : ${firstnameInput.value}`);
   console.log(`Nom : ${lastnameInput.value}`);
   console.log(`Email : ${emailInput.value}`);
