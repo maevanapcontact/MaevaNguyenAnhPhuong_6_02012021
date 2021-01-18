@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
     <title>FishEye - photographer</title>
   </head>
   <body>
     <!-- BANNER -->
-    <header
-      class="banner"
-      role="banner"
-      id="header-banner"
-      aria-hidden="false"
-    >
+    <header class="banner" role="banner" id="header-banner" aria-hidden="false">
       <a href="index.html" title="Homepage">
-        <img src="medias/logo.png" alt="Fisheye Home page" width="512" height="128">
+        <img
+          src="medias/logo.png"
+          alt="Fisheye Home page"
+          width="512"
+          height="128"
+        />
       </a>
     </header>
 
     <!-- MAIN PHOTOGRAPHER PAGE-->
-    <main
-      class="photographer-page"
-      id="photographer-page"
-      aria-hidden="false"
-    >
+    <main class="photographer-page" id="photographer-page" aria-hidden="false">
       <header class="ph-header" aria-label="photographer information">
         <div class="ph-infos">
           <h1 class="ph-name" id="ph-title"></h1>
@@ -34,8 +38,15 @@
           <span class="ph-tagline" id="ph-tagline"></span>
           <ul class="tags" id="ph-tags"></ul>
         </div>
-        <button class="ph-contact" id="ph-contact" title="Contact Me">Contactez-moi</button>
-        <img src="medias/MimiKeel.jpg" alt="" id="ph-portrait">
+        <button
+          type="button"
+          class="ph-contact"
+          id="ph-contact"
+          title="Contact Me"
+        >
+          Contactez-moi
+        </button>
+        <img src="medias/MimiKeel.jpg" alt="" id="ph-portrait" />
       </header>
 
       <section class="ph-works" aria-label="photographer works">
@@ -47,6 +58,7 @@
             aria-controls="sort-list"
             aria-expanded="false"
             value="Popularité"
+            type="button"
           ></button>
           <ul
             id="sort-list"
@@ -62,22 +74,10 @@
               class="list-selected list-first"
               aria-selected="true"
             >
-              Popularité <i class="fas fa-chevron-up"></i>
+              Popularité <span class="fas fa-chevron-up"></span>
             </li>
-            <li
-              role="option"
-              id="sort-2"
-              aria-selected="false"
-            >
-              Date
-            </li>
-            <li
-              role="option"
-              id="sort-3"
-              aria-selected="false"
-            >
-              Titre
-            </li>
+            <li role="option" id="sort-2" aria-selected="false">Date</li>
+            <li role="option" id="sort-3" aria-selected="false">Titre</li>
           </ul>
         </div>
         <div class="works-elts" id="works-elts"></div>
@@ -85,11 +85,7 @@
     </main>
 
     <!-- FORM -->
-    <div
-      class="cover"
-      id="cover"
-      aria-hidden="true"
-    ></div>
+    <div class="cover" id="cover" aria-hidden="true"></div>
     <dialog
       role="dialog"
       class="form-dialog"
@@ -109,12 +105,11 @@
             <span>Contactez-moi</span>
             <span class="ph-form-name" id="ph-form-name"></span>
           </h1>
-          <button
-            id="close-btn"
-            title="Close Contact form"
-            title="Close form"
-          >
-            <i class="fas fa-times"></i>
+          <button id="close-btn" title="Close form" type="button">
+            <span
+              class="fas fa-times close-form-icon"
+              aria-hidden="true"
+            ></span>
           </button>
         </header>
 
@@ -124,8 +119,7 @@
           name="first-name"
           id="first-name"
           aria-labelledby="label-firstname"
-          required
-        >
+        />
 
         <label for="last-name" id="label-lastname">Nom</label>
         <input
@@ -133,8 +127,7 @@
           name="last-name"
           id="last-name"
           aria-labelledby="label-lastname"
-          required
-        >
+        />
 
         <label for="email" id="label-email">Email</label>
         <input
@@ -142,8 +135,7 @@
           name="email"
           id="email"
           aria-labelledby="label-email"
-          required
-        >
+        />
 
         <label for="message" id="label-message">Votre message</label>
         <textarea
@@ -160,16 +152,12 @@
           class="form-submit"
           title="Send"
           id="form-submit-btn"
-        >
+        />
       </form>
     </dialog>
 
     <!-- LIGHTBOX -->
-    <div
-      class="lightbox-cover"
-      id="lightbox-cover"
-      aria-hidden="true"
-    ></div>
+    <div class="lightbox-cover" id="lightbox-cover" aria-hidden="true"></div>
     <dialog
       class="lightbox"
       id="lightbox"
@@ -179,25 +167,28 @@
       <div class="lightbox-media">
         <div id="lightbox-content"></div>
         <button
+          type="button"
           class="lightbox-close"
           id="lightbox-close"
           title="Close dialog"
         >
-          <i class="fas fa-times"></i>
+          <span class="fas fa-times" aria-hidden="true"></span>
         </button>
         <button
+          type="button"
           class="lightbox-nav lightbox-left"
           id="lightbox-previous"
           title="Previous image"
         >
-          <i class="fas fa-chevron-left"></i>
+          <span class="fas fa-chevron-left" aria-hidden="true"></span>
         </button>
         <button
+          type="button"
           class="lightbox-nav lightbox-right"
           id="lightbox-next"
           title="Next image"
         >
-          <i class="fas fa-chevron-right"></i>
+          <span class="fas fa-chevron-right" aria-hidden="true"></span>
         </button>
       </div>
     </dialog>

@@ -62,7 +62,7 @@
     display: block;
   }
 
-  i {
+  .close-form-icon {
     font-size: 2em;
     color: #fff;
     margin-top: 10px;
@@ -72,7 +72,7 @@
     }
   }
 
-  i:hover {
+  .close-form-icon:hover {
     cursor: pointer;
   }
 
