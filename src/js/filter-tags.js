@@ -1,11 +1,11 @@
-import data from './data';
-import { createPhotographerElt } from './photographer-elt';
+import data from "./data";
+import { createPhotographerElt } from "./photographer-elt";
 
 /**
  * DOM Elements
  */
-const tagsElt = document.getElementById('tags');
-const photographersElt = document.getElementById('photographers');
+const tagsElt = document.getElementById("tags");
+const photographersElt = document.getElementById("photographers");
 
 /**
  * Photographers data
@@ -15,27 +15,22 @@ const photographersElt = document.getElementById('photographers');
 const photographers = data.photographers;
 
 /**
- * Generate an array of photographers to display based on filter tags
+ * Generate an array of photographers to display based on a given array of tags
  *
- * @return  {[type]}  [return description]
+ * @param   {array}  tagsList  The list of filtering tags
+ *
+ * @return  {[type]}
  */
-const getFilteredPhotographers = () => {
-  const childrenElts = tagsElt.childNodes;
-  let photographersToDisplay = [];
-
-  childrenElts.forEach(elt => {
-    if (elt.className == 'selected') {
-      photographers.forEach(photographer => {
-        if (photographer.tags.includes(elt.lastChild.textContent.toLowerCase()) && !photographersToDisplay.includes(photographer)) {
-          photographersToDisplay.push(photographer)
-        }
-      })
+const getFilteredPhotographers = (tagsList) => {
+  let photographersToDisplay = photographers;
+  photographersToDisplay = photographersToDisplay.filter((photographer) => {
+    for (let i = 0; i < tagsList.length; i++) {
+      if (!photographer.tags.includes(tagsList[i])) return false;
     }
-  })
-
-  if (photographersToDisplay.length === 0) return photographers;
+    return true;
+  });
   return photographersToDisplay;
-}
+};
 
 /**
  * Toggle filter tag to display new filtered photographers (DOM)
@@ -44,14 +39,53 @@ const getFilteredPhotographers = () => {
  *
  * @return  {void}
  */
-const toggleFilter = (e) => {
-  const target = e.target;
-  if (target.tagName === 'SPAN') target.parentNode.classList.toggle('selected');
-  if (target.tagName === 'LI') target.classList.toggle('selected');
+const toggleFilter = (evt) => {
+  evt.preventDefault();
+  const target = evt.target;
+  if (target.tagName === "A") target.parentNode.classList.toggle("selected");
+  if (target.tagName === "SPAN")
+    target.parentNode.parentNode.classList.toggle("selected");
+  if (target.tagName === "LI") target.classList.toggle("selected");
 
-  let photographerToDisplay = getFilteredPhotographers();
-  photographersElt.innerHTML = '';
-  photographerToDisplay.forEach(photographer => photographersElt.appendChild(createPhotographerElt(photographer)));
-}
+  const childrenElts = tagsElt.childNodes;
+  let tagsSelected = [];
+  childrenElts.forEach((elt) => {
+    if (elt.className == "selected")
+      tagsSelected.push(elt.lastChild.lastChild.textContent.toLowerCase());
+  });
 
-export { getFilteredPhotographers, toggleFilter }
+  let photographerToDisplay = getFilteredPhotographers(tagsSelected);
+  photographersElt.innerHTML = "";
+  photographerToDisplay.forEach((photographer) =>
+    photographersElt.appendChild(createPhotographerElt(photographer))
+  );
+};
+
+const toggleFilterFromPhotographerElt = (evt) => {
+  evt.preventDefault();
+  const target = evt.target;
+  let tagSelected = "";
+  if (target.tagName === "A") {
+    target.parentNode.classList.toggle("selected");
+    tagSelected = target.lastChild.textContent;
+  }
+  if (target.tagName === "SPAN") {
+    target.parentNode.parentNode.classList.toggle("selected");
+    tagSelected = target.textContent;
+  }
+  if (target.tagName === "LI") {
+    target.classList.toggle("selected");
+    tagSelected = target.childNodes[0].lastChild.textContent;
+  }
+
+  tagsElt.childNodes.forEach((elt) => {
+    if (elt.childNodes[0].lastChild.textContent.toLowerCase() == tagSelected)
+      elt.classList.toggle("selected");
+  });
+};
+
+export {
+  getFilteredPhotographers,
+  toggleFilter,
+  toggleFilterFromPhotographerElt,
+};

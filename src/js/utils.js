@@ -73,12 +73,10 @@ const createInteractiveListElt = (parentElt, eltText) => {
   const aElt = document.createElement("a");
   aElt.setAttribute("href", "#");
   aElt.setAttribute("title", eltText);
-  const spanElt = document.createElement("span");
-  spanElt.textContent = "#";
   const tagElt = createEltWithClassName("span", "filter-tag");
   tagElt.textContent = eltText;
 
-  aElt.appendChild(spanElt);
+  aElt.textContent = "#";
   aElt.appendChild(tagElt);
   liElt.appendChild(aElt);
 
