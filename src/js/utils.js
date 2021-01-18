@@ -11,7 +11,7 @@ const createEltWithClassName = (eltTag, eltClass) => {
   elt.classList.add(eltClass);
 
   return elt;
-}
+};
 
 /**
  * Create a link element with href and title attributes
@@ -22,12 +22,12 @@ const createEltWithClassName = (eltTag, eltClass) => {
  * @return  {object}             created element
  */
 const createLinkElt = (linkHref, linkTitle) => {
-  const elt = document.createElement('a');
-  elt.setAttribute('href', linkHref);
-  elt.setAttribute('title', linkTitle);
+  const elt = document.createElement("a");
+  elt.setAttribute("href", linkHref);
+  elt.setAttribute("title", linkTitle);
 
   return elt;
-}
+};
 
 /**
  * Create an img element with src and alt attributes
@@ -38,11 +38,11 @@ const createLinkElt = (linkHref, linkTitle) => {
  * @return  {object}          created element
  */
 const createImgElt = (imgSrc, imgAlt) => {
-  const elt = document.createElement('img');
+  const elt = document.createElement("img");
   fillImgElt(elt, imgSrc, imgAlt);
-  
+
   return elt;
-}
+};
 
 /**
  * Create textual element with content and class
@@ -58,7 +58,7 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
   fillEltWithText(elt, eltContent);
 
   return elt;
-}
+};
 
 /**
  * Create a list of interactive tag elements
@@ -69,18 +69,21 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
  * @return  {void}
  */
 const createInteractiveListElt = (parentElt, eltText) => {
-  const liElt = document.createElement('li');
-  liElt.setAttribute('role', 'button');
-  const spanElt = document.createElement('span');
-  spanElt.textContent = '#';
-  const tagElt = createEltWithClassName('span', 'filter-tag');
+  const liElt = document.createElement("li");
+  const aElt = document.createElement("a");
+  aElt.setAttribute("href", "#");
+  aElt.setAttribute("title", eltText);
+  const spanElt = document.createElement("span");
+  spanElt.textContent = "#";
+  const tagElt = createEltWithClassName("span", "filter-tag");
   tagElt.textContent = eltText;
-  
-  liElt.appendChild(spanElt);
-  liElt.appendChild(tagElt);
+
+  aElt.appendChild(spanElt);
+  aElt.appendChild(tagElt);
+  liElt.appendChild(aElt);
 
   parentElt.appendChild(liElt);
-}
+};
 
 /**
  * Get parameter value from URL
@@ -95,7 +98,7 @@ const getParamFromUrl = (urlString, param) => {
   const paramValue = url.searchParams.get(param);
 
   return paramValue;
-}
+};
 
 /**
  * Fill element with text
@@ -106,11 +109,10 @@ const getParamFromUrl = (urlString, param) => {
  * @return  {object}        The updated element
  */
 const fillEltWithText = (elt, text) => {
-  const content = document.createTextNode(text);
-  elt.appendChild(content);
+  elt.textContent = text;
 
   return elt;
-}
+};
 
 /**
  * Fill img element
@@ -122,11 +124,11 @@ const fillEltWithText = (elt, text) => {
  * @return  {object}          The updated img element
  */
 const fillImgElt = (elt, imgSrc, imgAlt) => {
-  elt.setAttribute('src', imgSrc);
-  elt.setAttribute('alt', imgAlt);
+  elt.setAttribute("src", imgSrc);
+  elt.setAttribute("alt", imgAlt);
 
   return elt;
-}
+};
 
 export {
   createEltWithClassName,
@@ -136,5 +138,5 @@ export {
   createInteractiveListElt,
   getParamFromUrl,
   fillEltWithText,
-  fillImgElt
-}
+  fillImgElt,
+};

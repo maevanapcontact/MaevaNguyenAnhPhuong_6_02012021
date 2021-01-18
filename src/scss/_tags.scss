@@ -4,6 +4,10 @@
   flex-wrap: wrap;
   margin: 5px 0;
 
+  a {
+    color: $primary-color;
+  }
+
   li {
     display: flex;
     border: 0.5px solid $border-color;
@@ -14,17 +18,16 @@
     font-weight: 500;
     font-size: 0.8em;
 
-    &:hover {
+    &:hover,
+    &.selected {
       cursor: pointer;
       background: $primary-color;
-      color: #fff;
       border-color: $primary-color;
     }
 
-    &.selected {
-      background: $primary-color;
+    &:hover a,
+    &.selected a {
       color: #fff;
-      border-color: $primary-color;
     }
   }
 }
