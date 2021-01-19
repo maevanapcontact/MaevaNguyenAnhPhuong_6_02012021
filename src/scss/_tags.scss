@@ -6,6 +6,10 @@
 
   a {
     color: $primary-color;
+
+    &:before {
+      content: "#";
+    }
   }
 
   li {
