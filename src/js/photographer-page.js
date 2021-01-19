@@ -10,6 +10,7 @@ import {
 import { addPhotographerNameInForm } from "./form";
 import { createTotalLikeElt } from "./likes";
 import { manageLightBox, configureLightboxControls } from "./lightbox";
+import { sortPhotographers } from "./sort";
 import MediaFactory from "./MediaFactory";
 
 /**
@@ -81,31 +82,8 @@ const fillPhotographerHeader = () => {
  */
 const createPhotographerWorksSection = () => {
   const worksElts = document.getElementById("works-elts");
-  const sortedWorks = sortPhotographers("popularite");
+  const sortedWorks = sortPhotographers(photographerWorks, "popularite");
   sortedWorks.forEach((work) => worksElts.appendChild(createWorkElt(work)));
-};
-
-/**
- * Sort the works array based on the filter type
- *
- * @return {array} Filtered array
- */
-const sortPhotographers = (type) => {
-  if (type === "popularite")
-    return photographerWorks.sort((a, b) => b.likes - a.likes);
-  if (type === "date")
-    return photographerWorks.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-  if (type === "titre") {
-    return photographerWorks.sort((a, b) => {
-      const titleA = a.alt.toUpperCase();
-      const titleB = b.alt.toUpperCase();
-      if (titleA < titleB) return -1;
-      if (titleA > titleB) return 1;
-      return 0;
-    });
-  }
 };
 
 /**

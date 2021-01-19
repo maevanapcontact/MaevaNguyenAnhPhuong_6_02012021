@@ -50,7 +50,28 @@
       </header>
 
       <section class="ph-works" aria-label="photographer works">
-        <div class="works-sort"></div>
+        <div class="works-sort">
+          <span id="sort-label">Trier par</span>
+          <div id="sort-wrapper">
+            <button
+              aria-haspopup="listbox"
+              aria-labelledby="sort-label sort-btn"
+              id="sort-btn"
+            >
+              Popularité
+            </button>
+            <ul
+              id="sort-list"
+              tabindex="-1"
+              role="listbox"
+              aria-labelledby="sort-label"
+            >
+              <li id="sort-1" role="option">Popularité</li>
+              <li id="sort-2" role="option">Date</li>
+              <li id="sort-3" role="option">Titre</li>
+            </ul>
+          </div>
+        </div>
         <div class="works-elts" id="works-elts"></div>
       </section>
     </main>
