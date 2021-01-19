@@ -151,4 +151,21 @@ const getFilteredPhotographers = (tagsList) => {
   return photographersToDisplay;
 };
 
-export { getFilteredPhotographers, toggleFilter };
+/**
+ * Display the filtered photographers based on the params in the URL (page creation)
+ *
+ * @return  {void}
+ */
+const checkFilterOnPageCreation = () => {
+  toggleNavSelectedTags();
+  const tagsInURL = getParamsFromURL("tag");
+  const photographerToDisplay = getFilteredPhotographers(tagsInURL);
+
+  displayFilteredPhotographers(photographerToDisplay);
+  toggleEltSelectedTags();
+
+  const tagsListElts = document.querySelectorAll(".ph-elt-tags");
+  tagsListElts.forEach((elt) => elt.addEventListener("click", toggleFilter));
+};
+
+export { getFilteredPhotographers, toggleFilter, checkFilterOnPageCreation };

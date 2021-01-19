@@ -43,7 +43,9 @@ const createPhotographerElt = (data) => {
   pElt.appendChild(taglineElt);
   pElt.appendChild(priceElt);
 
-  data.tags.forEach((tag) => createInteractiveListElt(ulElt, tag));
+  data.tags.forEach((tag) =>
+    createInteractiveListElt(ulElt, tag, "index.html")
+  );
 
   return articleElt;
 };

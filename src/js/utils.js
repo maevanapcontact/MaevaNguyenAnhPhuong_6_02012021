@@ -68,10 +68,10 @@ const createTextualElt = (eltTag, eltContent, eltClass) => {
  *
  * @return  {void}
  */
-const createInteractiveListElt = (parentElt, eltText) => {
+const createInteractiveListElt = (parentElt, eltText, hrefURL) => {
   const liElt = document.createElement("li");
   const aElt = createEltWithClassName("a", "filter-tag");
-  aElt.setAttribute("href", "index.html");
+  aElt.setAttribute("href", hrefURL);
   aElt.setAttribute("title", eltText);
   aElt.textContent = eltText;
 

@@ -1,29 +1,33 @@
-import data from './data';
-import { getParamFromUrl,
+import data from "./data";
+import {
+  getParamFromUrl,
   fillEltWithText,
   createInteractiveListElt,
   fillImgElt,
   createEltWithClassName,
-  createTextualElt
-} from './utils';
-import { addPhotographerNameInForm } from './form';
-import { createTotalLikeElt } from './likes';
-import { manageLightBox, configureLightboxControls } from './lightbox';
-import MediaFactory from './MediaFactory';
-
+  createTextualElt,
+} from "./utils";
+import { addPhotographerNameInForm } from "./form";
+import { createTotalLikeElt } from "./likes";
+import { manageLightBox, configureLightboxControls } from "./lightbox";
+import MediaFactory from "./MediaFactory";
 
 /**
  * DOM variables
  */
-const headerBannerElt = document.getElementById('header-banner');
-const photographerPageElt = document.getElementById('photographer-page');
+const headerBannerElt = document.getElementById("header-banner");
+const photographerPageElt = document.getElementById("photographer-page");
 
 /**
  * Photographer's variables
  */
-const photographerId = getParamFromUrl(document.location.href, 'id');
-const photographerData = data.photographers.filter(elt => elt.id == photographerId)[0];
-const photographerWorks = data.media.filter(elt => elt.photographerId == photographerId);
+const photographerId = getParamFromUrl(document.location.href, "id");
+const photographerData = data.photographers.filter(
+  (elt) => elt.id == photographerId
+)[0];
+const photographerWorks = data.media.filter(
+  (elt) => elt.photographerId == photographerId
+);
 
 /**
  * Build the DOM photographer page
@@ -35,7 +39,7 @@ const createPhotographerPage = () => {
   createPhotographerWorksSection();
   fillPhotographerData();
   addPhotographerNameInForm(photographerData.name);
-}
+};
 
 /**
  * Fill the HTML photographer header with photographer's data
@@ -43,23 +47,32 @@ const createPhotographerPage = () => {
  * @return  {void}
  */
 const fillPhotographerHeader = () => {
-  const titleElt = document.getElementById('ph-title');
+  const titleElt = document.getElementById("ph-title");
   fillEltWithText(titleElt, photographerData.name);
 
-  const cityElt = document.getElementById('ph-city');
-  fillEltWithText(cityElt, `${photographerData.city}, ${photographerData.country}`);
+  const cityElt = document.getElementById("ph-city");
+  fillEltWithText(
+    cityElt,
+    `${photographerData.city}, ${photographerData.country}`
+  );
 
-  const taglineElt = document.getElementById('ph-tagline');
+  const taglineElt = document.getElementById("ph-tagline");
   fillEltWithText(taglineElt, photographerData.tagline);
 
-  const tagsElt = document.getElementById('ph-tags');
-  photographerData.tags.forEach(tag => createInteractiveListElt(tagsElt, tag));
+  const tagsElt = document.getElementById("ph-tags");
+  photographerData.tags.forEach((tag) =>
+    createInteractiveListElt(tagsElt, tag, `index.html?tag=${tag}`)
+  );
 
-  const portraitElt = document.getElementById('ph-portrait');
-  fillImgElt(portraitElt, `images/${photographerData.portrait}`, photographerData.alt);
+  const portraitElt = document.getElementById("ph-portrait");
+  fillImgElt(
+    portraitElt,
+    `images/${photographerData.portrait}`,
+    photographerData.alt
+  );
 
   configureLightboxControls();
-}
+};
 
 /**
  * Add each work element of the current photographer
@@ -67,55 +80,63 @@ const fillPhotographerHeader = () => {
  * @return  {void}
  */
 const createPhotographerWorksSection = () => {
-  const worksElts = document.getElementById('works-elts');
-  const sortedWorks = sortPhotographers('popularite');
-  sortedWorks.forEach(work => worksElts.appendChild(createWorkElt(work)));
-}
+  const worksElts = document.getElementById("works-elts");
+  const sortedWorks = sortPhotographers("popularite");
+  sortedWorks.forEach((work) => worksElts.appendChild(createWorkElt(work)));
+};
 
 /**
  * Sort the works array based on the filter type
  *
  * @return {array} Filtered array
  */
-const sortPhotographers = type => {
-  if (type === 'popularite') return photographerWorks.sort((a, b) => b.likes - a.likes);
-  if (type === 'date') return photographerWorks.sort((a, b) => new Date(b.date) - new Date(a.date));
-  if (type === 'titre') {
+const sortPhotographers = (type) => {
+  if (type === "popularite")
+    return photographerWorks.sort((a, b) => b.likes - a.likes);
+  if (type === "date")
+    return photographerWorks.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+  if (type === "titre") {
     return photographerWorks.sort((a, b) => {
       const titleA = a.alt.toUpperCase();
       const titleB = b.alt.toUpperCase();
       if (titleA < titleB) return -1;
       if (titleA > titleB) return 1;
       return 0;
-    })
+    });
   }
-}
+};
 
 /**
  * Create a single work element for a photographer
  *
  * @param  {object} workData A single work object (from database)
- * 
+ *
  * @return  {object} The element created
  */
-const createWorkElt = workData => {
-  const elt =  createEltWithClassName('div', 'work-elt');
-  const infosElt = createEltWithClassName('div', 'work-elt-infos');
-  const titleElt = createTextualElt('h2', workData.alt, 'work-title');
-  const priceElt = createTextualElt('span', `${workData.price} €`, 'work-price');
-  const likeElt = createTextualElt('span', workData.likes, 'work-like');
-  likeElt.setAttribute('id', workData.id);
-  const heartElt = createEltWithClassName('i', 'fas');
+const createWorkElt = (workData) => {
+  const elt = createEltWithClassName("div", "work-elt");
+  const infosElt = createEltWithClassName("div", "work-elt-infos");
+  const titleElt = createTextualElt("h2", workData.alt, "work-title");
+  const priceElt = createTextualElt(
+    "span",
+    `${workData.price} €`,
+    "work-price"
+  );
+  const likeElt = createTextualElt("span", workData.likes, "work-like");
+  likeElt.setAttribute("id", workData.id);
+  const heartElt = createEltWithClassName("i", "fas");
 
-  heartElt.classList.add('fa-heart');
-  heartElt.setAttribute('aria-label', 'likes');
-  heartElt.setAttribute('role', 'button');
-  
-  const workType = workData.video === undefined ? 'image' : 'video';
+  heartElt.classList.add("fa-heart");
+  heartElt.setAttribute("aria-label", "likes");
+  heartElt.setAttribute("role", "button");
+
+  const workType = workData.video === undefined ? "image" : "video";
   const media = new MediaFactory(workType, workData);
   const mediaElt = media.createElt();
   elt.appendChild(mediaElt);
-  mediaElt.addEventListener('click', manageLightBox(media));
+  mediaElt.addEventListener("click", manageLightBox(media));
 
   likeElt.appendChild(heartElt);
   infosElt.appendChild(titleElt);
@@ -124,7 +145,7 @@ const createWorkElt = workData => {
   elt.appendChild(infosElt);
 
   return elt;
-}
+};
 
 /**
  * Fill HTML element with photographer data
@@ -132,10 +153,10 @@ const createWorkElt = workData => {
  * @return  {void}
  */
 const fillPhotographerData = () => {
-  const pageElt =  document.getElementById('photographer-page');
-  const elt = createEltWithClassName('aside', 'ph-data');
-  elt.setAttribute('aria-label', 'photographer likes and price');
-  const priceElt = document.createElement('span');
+  const pageElt = document.getElementById("photographer-page");
+  const elt = createEltWithClassName("aside", "ph-data");
+  elt.setAttribute("aria-label", "photographer likes and price");
+  const priceElt = document.createElement("span");
 
   priceElt.textContent = `${photographerData.price}€ / jour`;
 
@@ -143,7 +164,7 @@ const fillPhotographerData = () => {
   elt.appendChild(priceElt);
 
   pageElt.appendChild(elt);
-}
+};
 
 /**
  * Hide page content from accessibility when opening a modal
@@ -151,9 +172,9 @@ const fillPhotographerData = () => {
  * @return  {void}
  */
 const openDialogModal = () => {
-  headerBannerElt.setAttribute('aria-hidden', 'true');
-  photographerPageElt.setAttribute('aria-hidden', 'true');
-}
+  headerBannerElt.setAttribute("aria-hidden", "true");
+  photographerPageElt.setAttribute("aria-hidden", "true");
+};
 
 /**
  * Show page content from accessibility when closing a modal
@@ -161,13 +182,13 @@ const openDialogModal = () => {
  * @return  {void}
  */
 const closeDialogModal = () => {
-  headerBannerElt.setAttribute('aria-hidden', 'false');
-  photographerPageElt.setAttribute('aria-hidden', 'false');
-}
+  headerBannerElt.setAttribute("aria-hidden", "false");
+  photographerPageElt.setAttribute("aria-hidden", "false");
+};
 
 export {
   createPhotographerPage,
   photographerWorks,
   openDialogModal,
-  closeDialogModal
-}
+  closeDialogModal,
+};
