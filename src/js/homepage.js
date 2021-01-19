@@ -1,9 +1,5 @@
 import { createPhotographerElt } from "./photographer-elt";
-import {
-  getFilteredPhotographers,
-  toggleFilter,
-  toggleFilterFromPhotographerElt,
-} from "./filter-tags";
+import { getFilteredPhotographers, toggleFilter } from "./filter-tags";
 
 /**
  * DOM Elements
@@ -25,9 +21,7 @@ const createHomepage = () => {
   );
 
   const tagsListElts = document.querySelectorAll(".ph-elt-tags");
-  tagsListElts.forEach((elt) =>
-    elt.addEventListener("click", toggleFilterFromPhotographerElt)
-  );
+  tagsListElts.forEach((elt) => elt.addEventListener("click", toggleFilter));
 };
 
 export { createHomepage };
