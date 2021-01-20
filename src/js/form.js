@@ -1,34 +1,31 @@
-import {
-  openDialogModal,
-  closeDialogModal
-} from './photographer-page';
+import { openDialogModal, closeDialogModal } from "./photographer-page";
 
 /**
  * DOM Elements
  */
-const contactElt = document.getElementById('ph-contact');
-const formElt = document.getElementById('contact-form');
-const formDialogElt = document.getElementById('form-dialog');
-const coverFormElt = document.getElementById('cover');
-const closeBtnElt = document.getElementById('close-btn');
+const contactElt = document.getElementById("ph-contact");
+const formElt = document.getElementById("contact-form");
+const formDialogElt = document.getElementById("form-dialog");
+const coverFormElt = document.getElementById("cover");
+const closeBtnElt = document.getElementById("close-btn");
 
 /**
  * DOM Form Elements
  */
-const firstnameInput = document.getElementById('first-name');
-const lastnameInput = document.getElementById('last-name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-const formSubmitBtnElt = document.getElementById('form-submit-btn');
+const firstnameInput = document.getElementById("first-name");
+const lastnameInput = document.getElementById("last-name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
+const formSubmitBtnElt = document.getElementById("form-submit-btn");
 
 /**
  * Add the event listeners for the form
  */
 const path = document.location.pathname;
-if (path.includes('photographer-page.html')) {
-  contactElt.addEventListener('click', openForm);
-  closeBtnElt.addEventListener('click', closeForm);
-  formElt.addEventListener('submit', submitForm);
+if (path.includes("photographer-page.html")) {
+  contactElt.addEventListener("click", openForm);
+  closeBtnElt.addEventListener("click", closeForm);
+  formElt.addEventListener("submit", submitForm);
 }
 
 /**
@@ -39,10 +36,10 @@ if (path.includes('photographer-page.html')) {
 function openForm() {
   openDialogModal();
 
-  formDialogElt.style.display = 'block';
-  formDialogElt.setAttribute('aria-hidden', 'false');
-  coverFormElt.style.display = 'block';
-  coverFormElt.setAttribute('aria-hidden', 'false');
+  formDialogElt.style.display = "block";
+  formDialogElt.setAttribute("aria-hidden", "false");
+  coverFormElt.style.display = "block";
+  coverFormElt.setAttribute("aria-hidden", "false");
 
   keyboardTrapForm();
 }
@@ -54,8 +51,8 @@ function openForm() {
  */
 const keyboardTrapForm = () => {
   firstnameInput.focus();
-  formDialogElt.addEventListener('keydown', keyboardNavigationForm);
-}
+  formDialogElt.addEventListener("keydown", keyboardNavigationForm);
+};
 
 /**
  * Manage the keyboard navigation inside the form
@@ -89,11 +86,12 @@ function keyboardNavigationForm(evt) {
  */
 function closeForm() {
   closeDialogModal();
+  contactElt.focus();
 
-  formDialogElt.style.display = 'none';
-  formDialogElt.setAttribute('aria-hidden', 'true');
-  coverFormElt.style.display = 'none';
-  coverFormElt.setAttribute('aria-hidden', 'true');
+  formDialogElt.style.display = "none";
+  formDialogElt.setAttribute("aria-hidden", "true");
+  coverFormElt.style.display = "none";
+  coverFormElt.setAttribute("aria-hidden", "true");
 }
 
 /**
@@ -116,9 +114,9 @@ function submitForm(e) {
  *
  * @return  {void}
  */
-const addPhotographerNameInForm = photographerName => {
-  const nameElt = document.getElementById('ph-form-name');
+const addPhotographerNameInForm = (photographerName) => {
+  const nameElt = document.getElementById("ph-form-name");
   nameElt.textContent = photographerName;
-}
+};
 
-export { addPhotographerNameInForm }
+export { addPhotographerNameInForm };

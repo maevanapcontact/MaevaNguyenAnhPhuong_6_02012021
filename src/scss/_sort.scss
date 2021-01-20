@@ -1,6 +1,7 @@
 .works-sort {
   position: relative;
   margin: 20px 0 0 20px;
+  display: none;
 
   @media (min-width: 800px) {
     display: block;
