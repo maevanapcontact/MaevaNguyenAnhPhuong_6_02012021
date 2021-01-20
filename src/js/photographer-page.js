@@ -10,7 +10,7 @@ import {
 import { addPhotographerNameInForm } from "./form";
 import { createTotalLikeElt } from "./likes";
 import { manageLightBox, configureLightboxControls } from "./lightbox";
-import { sortPhotographers } from "./sort";
+import { sortPhotographers, manageSortEvents } from "./sort";
 import MediaFactory from "./MediaFactory";
 
 /**
@@ -37,9 +37,10 @@ const photographerWorks = data.media.filter(
  */
 const createPhotographerPage = () => {
   fillPhotographerHeader();
-  createPhotographerWorksSection();
+  createPhotographerWorksSection("Popularité");
   fillPhotographerData();
   addPhotographerNameInForm(photographerData.name);
+  manageSortEvents();
 };
 
 /**
@@ -80,9 +81,10 @@ const fillPhotographerHeader = () => {
  *
  * @return  {void}
  */
-const createPhotographerWorksSection = () => {
+const createPhotographerWorksSection = (filterTag) => {
   const worksElts = document.getElementById("works-elts");
-  const sortedWorks = sortPhotographers(photographerWorks, "popularite");
+  worksElts.innerHTML = "";
+  const sortedWorks = sortPhotographers(photographerWorks, filterTag);
   sortedWorks.forEach((work) => worksElts.appendChild(createWorkElt(work)));
 };
 
@@ -169,4 +171,5 @@ export {
   photographerWorks,
   openDialogModal,
   closeDialogModal,
+  createPhotographerWorksSection,
 };

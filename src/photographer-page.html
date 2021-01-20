@@ -17,6 +17,7 @@
     <title>FishEye - photographer</title>
   </head>
   <body>
+    <div class="sort-cover" id="sort-cover"></div>
     <!-- BANNER -->
     <header class="banner" id="header-banner" aria-hidden="false">
       <a href="index.html" title="Homepage">
@@ -51,24 +52,29 @@
 
       <section class="ph-works" aria-label="photographer works">
         <div class="works-sort">
-          <span id="sort-label">Trier par</span>
+          <span id="sort-label" class="sort-label">Trier par</span>
           <div id="sort-wrapper">
             <button
               aria-haspopup="listbox"
               aria-labelledby="sort-label sort-btn"
               id="sort-btn"
+              class="sort-btn"
             >
               Popularité
+              <span class="fas fa-chevron-down sort-arrow"></span>
             </button>
             <ul
               id="sort-list"
               tabindex="-1"
               role="listbox"
               aria-labelledby="sort-label"
+              class="sort-list hidden"
             >
-              <li id="sort-1" role="option">Popularité</li>
-              <li id="sort-2" role="option">Date</li>
-              <li id="sort-3" role="option">Titre</li>
+              <li id="sort-1" role="option" tabindex="-1">
+                Popularité<span class="fas fa-chevron-up sort-arrow"></span>
+              </li>
+              <li id="sort-2" role="option" tabindex="-1">Date</li>
+              <li id="sort-3" role="option" tabindex="-1">Titre</li>
             </ul>
           </div>
         </div>
