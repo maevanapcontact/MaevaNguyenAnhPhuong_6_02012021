@@ -130,10 +130,10 @@ const createWorkElt = (workData) => {
   infosElt.appendChild(titleElt);
   infosElt.appendChild(priceElt);
   infosElt.appendChild(likeElt);
-  aElt.appendChild(infosElt);
   elt.appendChild(aElt);
+  elt.appendChild(infosElt);
 
-  elt.addEventListener("keydown", manageLightBoxOnKeyboard(media));
+  aElt.addEventListener("keydown", manageLightBoxOnKeyboard(media));
 
   return elt;
 };
