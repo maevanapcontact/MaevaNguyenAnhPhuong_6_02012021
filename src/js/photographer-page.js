@@ -6,10 +6,15 @@ import {
   fillImgElt,
   createEltWithClassName,
   createTextualElt,
+  createLinkElt,
 } from "./utils";
 import { addPhotographerNameInForm } from "./form";
-import { createTotalLikeElt } from "./likes";
-import { manageLightBox, configureLightboxControls } from "./lightbox";
+import { createTotalLikeElt, incrementLikesOnKeyboard } from "./likes";
+import {
+  manageLightBox,
+  configureLightboxControls,
+  manageLightBoxOnKeyboard,
+} from "./lightbox";
 import { sortPhotographers, manageSortEvents } from "./sort";
 import MediaFactory from "./MediaFactory";
 
@@ -97,6 +102,7 @@ const createPhotographerWorksSection = (filterTag) => {
  */
 const createWorkElt = (workData) => {
   const elt = createEltWithClassName("div", "work-elt");
+  const aElt = createLinkElt("#", `${workData.alt}, closeup view`);
   const infosElt = createEltWithClassName("div", "work-elt-infos");
   const titleElt = createTextualElt("h2", workData.alt, "work-title");
   const priceElt = createTextualElt(
@@ -106,23 +112,28 @@ const createWorkElt = (workData) => {
   );
   const likeElt = createTextualElt("span", workData.likes, "work-like");
   likeElt.setAttribute("id", workData.id);
-  const heartElt = createEltWithClassName("i", "fas");
+  const heartElt = createEltWithClassName("span", "fas");
 
   heartElt.classList.add("fa-heart");
   heartElt.setAttribute("aria-label", "likes");
   heartElt.setAttribute("role", "button");
+  heartElt.setAttribute("tabindex", "0");
+  heartElt.addEventListener("keydown", incrementLikesOnKeyboard);
 
   const workType = workData.video === undefined ? "image" : "video";
   const media = new MediaFactory(workType, workData);
   const mediaElt = media.createElt();
-  elt.appendChild(mediaElt);
+  aElt.appendChild(mediaElt);
   mediaElt.addEventListener("click", manageLightBox(media));
 
   likeElt.appendChild(heartElt);
   infosElt.appendChild(titleElt);
   infosElt.appendChild(priceElt);
   infosElt.appendChild(likeElt);
-  elt.appendChild(infosElt);
+  aElt.appendChild(infosElt);
+  elt.appendChild(aElt);
+
+  elt.addEventListener("keydown", manageLightBoxOnKeyboard(media));
 
   return elt;
 };

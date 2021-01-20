@@ -1,29 +1,30 @@
 import {
   openDialogModal,
   closeDialogModal,
-  photographerWorks
-} from './photographer-page';
-import { createTextualElt } from './utils';
-import MediaFactory from './MediaFactory';
+  photographerWorks,
+} from "./photographer-page";
+import { createTextualElt } from "./utils";
+import MediaFactory from "./MediaFactory";
 
 /**
  * Index Position of the current media
- * 
+ *
  * @let {number}
  */
 let indexCurrentMedia = -1;
+let focusedMedia = document.activeElement;
 
 /**
  * DOM Variables
  */
-const coverElt = document.getElementById('lightbox-cover');
-const lightboxElt = document.getElementById('lightbox');
-const contentElt = document.getElementById('lightbox-content');
-const closeElt = document.getElementById('lightbox-close');
-const bodyElt = document.getElementsByTagName('body')[0];
-const htmlElt = document.getElementsByTagName('html')[0];
-const previousElt = document.getElementById('lightbox-previous');
-const nextElt = document.getElementById('lightbox-next');
+const coverElt = document.getElementById("lightbox-cover");
+const lightboxElt = document.getElementById("lightbox");
+const contentElt = document.getElementById("lightbox-content");
+const closeElt = document.getElementById("lightbox-close");
+const bodyElt = document.getElementsByTagName("body")[0];
+const htmlElt = document.getElementsByTagName("html")[0];
+const previousElt = document.getElementById("lightbox-previous");
+const nextElt = document.getElementById("lightbox-next");
 
 /**
  * Make nav elements interactive
@@ -31,12 +32,29 @@ const nextElt = document.getElementById('lightbox-next');
  * @return  {void}
  */
 const configureLightboxControls = () => {
-  closeElt.addEventListener('click', closeLightBox);
-  previousElt.addEventListener('click', goToPreviousMedia);
-  nextElt.addEventListener('click', goToNextMedia);
+  closeElt.addEventListener("click", closeLightBox);
+  previousElt.addEventListener("click", goToPreviousMedia);
+  nextElt.addEventListener("click", goToNextMedia);
 
-  window.addEventListener('keydown', manageKeyboardNav);
-}
+  window.addEventListener("keydown", manageKeyboardNav);
+};
+
+/**
+ * Manage lightbox when pressing enter
+ *
+ * @param   {object}  mediaElt  The img or video element the user had chosen
+ * @param   {object}  evt       browser event
+ *
+ * @return  {void}
+ */
+const manageLightBoxOnKeyboard = function (mediaElt) {
+  return function manageKeyboard(evt) {
+    if (evt.key === "Enter") {
+      evt.preventDefault();
+      manageLightBox(mediaElt)();
+    }
+  };
+};
 
 /**
  * Manage individual media element inside the lightbox
@@ -45,17 +63,18 @@ const configureLightboxControls = () => {
  *
  * @return  {void}
  */
-const manageLightBox = function(mediaElt) {
+const manageLightBox = function (mediaElt) {
   return function manage() {
     openLightbox();
-    fillLightbox(mediaElt)
+    fillLightbox(mediaElt);
+    focusedMedia = document.activeElement;
 
-    const mediaClicked = document.getElementById('current-media-lightbox');
-    if (mediaElt.type === 'image') closeElt.focus();
-    if (mediaElt.type === 'video') mediaClicked.focus();
-    lightboxElt.addEventListener('keydown', keyboardTrapLightbox);
-  }
-}
+    const mediaClicked = document.getElementById("current-media-lightbox");
+    if (mediaElt.type === "image") closeElt.focus();
+    if (mediaElt.type === "video") mediaClicked.focus();
+    lightboxElt.addEventListener("keydown", keyboardTrapLightbox);
+  };
+};
 
 /**
  * Display the lightbox on the browser
@@ -65,26 +84,26 @@ const manageLightBox = function(mediaElt) {
 const openLightbox = () => {
   openDialogModal();
 
-  coverElt.style.display = 'block';
-  coverElt.setAttribute('aria-hidden', 'false');
-  lightboxElt.style.display = 'block';
-  lightboxElt.setAttribute('aria-hidden', 'false');
+  coverElt.style.display = "block";
+  coverElt.setAttribute("aria-hidden", "false");
+  lightboxElt.style.display = "block";
+  lightboxElt.setAttribute("aria-hidden", "false");
   htmlElt.scrollTop = 0;
   bodyElt.scrollTop = 0;
-  bodyElt.style.overflow = 'hidden';
-}
+  bodyElt.style.overflow = "hidden";
+};
 
 /**
  * Manage Keyboard trap on lightbox
  *
  * @param  {object} evt browser event
- * 
+ *
  * @return {void}
  */
-const keyboardTrapLightbox = evt => {
-  const currentMedia = document.getElementById('current-media-lightbox');
+const keyboardTrapLightbox = (evt) => {
+  const currentMedia = document.getElementById("current-media-lightbox");
 
-  if (currentMedia.tagName === 'IMG') {
+  if (currentMedia.tagName === "IMG") {
     if (evt.keyCode === 9) {
       if (evt.shiftKey) {
         if (document.activeElement === closeElt) {
@@ -115,8 +134,7 @@ const keyboardTrapLightbox = evt => {
   }
 
   if (evt.keyCode === 27) closeLightBox();
-}
-
+};
 
 /**
  * Remove the lightbox from the browser view
@@ -125,40 +143,41 @@ const keyboardTrapLightbox = evt => {
  */
 const closeLightBox = () => {
   closeDialogModal();
+  focusedMedia.focus();
 
-  coverElt.style.display = 'none';
-  coverElt.setAttribute('aria-hidden', 'true');
-  lightboxElt.style.display = 'none';
-  lightboxElt.setAttribute('aria-hidden', 'true');
-  bodyElt.style.overflow = 'auto';
-}
+  coverElt.style.display = "none";
+  coverElt.setAttribute("aria-hidden", "true");
+  lightboxElt.style.display = "none";
+  lightboxElt.setAttribute("aria-hidden", "true");
+  bodyElt.style.overflow = "auto";
+};
 
 /**
  * Fill the lightbox with the media the user clicked on
  *
  * @param {object} media The img or video element the user clicked on
  */
-const fillLightbox = media => {
-  contentElt.innerHTML = '';
+const fillLightbox = (media) => {
+  contentElt.innerHTML = "";
   contentElt.appendChild(media.createFullElt());
-  const mediaTitle = createTextualElt('h3', media.alt, 'lightbox-media-title');
+  const mediaTitle = createTextualElt("h3", media.alt, "lightbox-media-title");
   contentElt.appendChild(mediaTitle);
 
   indexCurrentMedia = getCurrentMediaPosition(media);
-}
+};
 
 /**
  * Get the index of the current media displayed on lightbox
  *
  * @return {number} Index of the media
  */
-const getCurrentMediaPosition = media => {
+const getCurrentMediaPosition = (media) => {
   for (let i = 0; i < photographerWorks.length; i++) {
     if (photographerWorks[i].id === media.id) return i;
   }
 
   return -1;
-}
+};
 
 /**
  * Create a new DOM media
@@ -167,11 +186,11 @@ const getCurrentMediaPosition = media => {
  */
 const createNewMedia = () => {
   const mediaData = photographerWorks[indexCurrentMedia];
-  const mediaType = mediaData.image ? 'image' : 'video';
+  const mediaType = mediaData.image ? "image" : "video";
 
   const newMedia = new MediaFactory(mediaType, mediaData);
   fillLightbox(newMedia);
-}
+};
 
 /**
  * Display the previous media of the photographer to the lightbox
@@ -183,7 +202,7 @@ const goToPreviousMedia = () => {
   else indexCurrentMedia = photographerWorks.length - 1;
 
   createNewMedia();
-}
+};
 
 /**
  * Display the next media of the photographer to the lightbox
@@ -195,15 +214,14 @@ const goToNextMedia = () => {
   else indexCurrentMedia = 0;
 
   createNewMedia();
-}
-
+};
 
 /**
  * Manage the keyboard navigation
  *
  * @return {void}
  */
-const manageKeyboardNav = evt => {
+const manageKeyboardNav = (evt) => {
   switch (evt.key) {
     case "Left":
     case "ArrowLeft":
@@ -222,6 +240,6 @@ const manageKeyboardNav = evt => {
   }
 
   evt.preventDefault();
-}
+};
 
-export { manageLightBox, configureLightboxControls };
+export { manageLightBox, configureLightboxControls, manageLightBoxOnKeyboard };
